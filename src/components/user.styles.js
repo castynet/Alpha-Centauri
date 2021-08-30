@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   position: absolute;
-  right: 50px;
-  top: 30px;
+  right: 40px;
+  top: 20px;
 `;
 
 export const ProfileIcon = styled.div`
