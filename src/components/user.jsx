@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as styled from "./user.styles";
+import * as styled from "./styles/user.styles.js";
 
 export default function DashBoard() {
   const [openUser, setOpenUser] = useState(false);
@@ -11,7 +11,10 @@ export default function DashBoard() {
   return (
     <>
       <styled.Wrapper>
-        <styled.ProfileIcon openUser={openUser} onClick={() => expandUser()}></styled.ProfileIcon>
+        <styled.ProfileIcon
+          openUser={openUser}
+          onClick={() => expandUser()}
+        ></styled.ProfileIcon>
       </styled.Wrapper>
     </>
   );

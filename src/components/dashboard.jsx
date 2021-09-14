@@ -1,4 +1,4 @@
-import * as styled from "./dashboard.styles";
+import * as styled from "./styles/dashboard.styles";
 
 export default function DashBoard() {
   return (
@@ -7,7 +7,7 @@ export default function DashBoard() {
         <styled.Sidebar>
           <styled.Menu>
             <styled.MenuItem>Courses</styled.MenuItem>
-            <styled.MenuItem>Assignements</styled.MenuItem>
+            <styled.MenuItem>Assignments</styled.MenuItem>
             <styled.MenuItem>Tests</styled.MenuItem>
             <styled.MenuItem>Community</styled.MenuItem>
           </styled.Menu>
