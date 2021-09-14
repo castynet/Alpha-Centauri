@@ -18,3 +18,7 @@ export const ProfileIcon = styled.div`
     cursor: pointer;
   }
 `;
+
+export const Expanded = styled.div`
+  display: ${(props) => (props.openUser ? "block" : "none")};
+`;
