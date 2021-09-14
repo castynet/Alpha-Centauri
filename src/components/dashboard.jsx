@@ -1,4 +1,5 @@
 import * as styled from "./styles/dashboard.styles";
+import Search from "./search";
 
 export default function DashBoard() {
   return (
@@ -16,7 +17,9 @@ export default function DashBoard() {
             <styled.BrowseMenuItem>All Courses</styled.BrowseMenuItem>
           </styled.BrowseMenu>
         </styled.Sidebar>
-        <styled.Main></styled.Main>
+        <styled.Main>
+          <Search />
+        </styled.Main>
       </styled.Wrapper>
     </>
   );
