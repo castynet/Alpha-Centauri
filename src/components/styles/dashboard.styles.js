@@ -10,6 +10,10 @@ export const Sidebar = styled.div`
   width: 20%;
   background-color: lightblue;
   height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding-top: 50px;
 `;
 
 export const Main = styled.div`
@@ -29,9 +33,9 @@ export const MenuItem = styled.li`
   box-shadow: var(--levelOneDropShadow);
   border-radius: 2em;
   border: 2px solid aliceblue;
+  transition: var(--smoothTransition);
 
   :hover {
-    transition: var(--smoothTransition);
     cursor: pointer;
     box-shadow: var(--levelTwoDropShadow);
   }
@@ -42,6 +46,14 @@ export const BrowseMenu = styled.ul`
 `;
 
 export const BrowseMenuItem = styled.li`
+  background-color: lightblue;
+  box-shadow: var(--levelOneDropShadow);
+  margin: 10px;
+  padding: 10px;
+  transition: var(--smoothTransition);
 
+  :hover {
+    cursor: pointer;
+    box-shadow: var(--levelTwoDropShadow);
+  }
 `;
-
