@@ -22,3 +22,43 @@ export const ProfileIcon = styled.div`
 export const Expanded = styled.div`
   display: ${(props) => (props.openUser ? "block" : "none")};
 `;
+
+export const SwitchInput = styled.input`
+  height: 0;
+  width: 0;
+  visibility: hidden;
+`;
+
+export const SwitchLabel = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 70px;
+  height: 30px;
+  border-radius: 100px;
+  border: 2px solid gray;
+  position: relative;
+  transition: background-color 0.5s;
+`;
+
+export const SwitchButton = styled.span`
+  content: "";
+  position: absolute;
+  border: 2px solid lightcoral;
+  left: 2px;
+  width: 36px;
+  height: 26px;
+  border-radius: 45px;
+  transition: all 0.5s;
+  background: grey;
+
+  ${SwitchInput}:checked + ${SwitchLabel} & {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+  }
+
+  ${SwitchLabel}:active & {
+    width: 45px;
+  }
+`;
