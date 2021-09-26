@@ -39,7 +39,7 @@ export const SwitchLabel = styled.label`
   border-radius: 100px;
   border: 2px solid gray;
   position: relative;
-  transition: background-color 0.5s;
+  transition: all 0.5s;
 `;
 
 export const SwitchButton = styled.span`
@@ -50,7 +50,7 @@ export const SwitchButton = styled.span`
   width: 36px;
   height: 26px;
   border-radius: 45px;
-  transition: all 0.5s;
+  transition: 0.5s;
   background: grey;
 
   ${SwitchInput}:checked + ${SwitchLabel} & {
@@ -62,3 +62,16 @@ export const SwitchButton = styled.span`
     width: 45px;
   }
 `;
+
+export const ThemeSwitch = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 10px;
+`;
+
+export const ThemeSwitchLabel = styled.p``;
