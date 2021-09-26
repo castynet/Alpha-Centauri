@@ -23,17 +23,21 @@ export default function DashBoard() {
             <p>logout</p>
             <p>edit profile</p>
             <p>settings</p>
-            <styled.SwitchInput
-              className="switch-checkbox"
-              id="switch"
-              type="checkbox"
-              onChange={() => toggleTheme()}
-              checked={darkTheme}
-            />
-            <styled.SwitchLabel className="switch-label" htmlFor="switch">
-              <styled.SwitchButton className="switch-button" />
-            </styled.SwitchLabel>
             <p>payments</p>
+            <styled.ThemeSwitch>
+              <styled.SwitchInput
+                id="switch"
+                type="checkbox"
+                onChange={() => toggleTheme()}
+                checked={darkTheme}
+              />
+              <styled.SwitchLabel htmlFor="switch">
+                <styled.SwitchButton />
+              </styled.SwitchLabel>
+              <styled.ThemeSwitchLabel>
+                {darkTheme ? "Dark" : "Light"} Theme
+              </styled.ThemeSwitchLabel>
+            </styled.ThemeSwitch>
           </styled.Expanded>
         </styled.ProfileIcon>
       </styled.Wrapper>
