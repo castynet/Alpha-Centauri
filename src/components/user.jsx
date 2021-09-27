@@ -15,8 +15,12 @@ export default function DashBoard() {
 
   return (
     <>
-      <styled.Wrapper>
-        <styled.ProfileIcon openUser={openUser} onClick={() => expandUser()}>
+      <styled.Wrapper openUser={openUser}>
+        {!openUser ? (
+          <styled.ProfileIcon onClick={() => expandUser()}>
+            <styled.UserIcon title="View Courses" />
+          </styled.ProfileIcon>
+        ) : (
           <styled.Expanded openUser={openUser}>
             <img src="" alt="User Profile" />
             <p>my account</p>
@@ -35,11 +39,11 @@ export default function DashBoard() {
                 <styled.SwitchButton />
               </styled.SwitchLabel>
               <styled.ThemeSwitchLabel>
-                {darkTheme ? "Dark" : "Light"} Theme
+                {darkTheme ? "Light" : "Dark"} Theme
               </styled.ThemeSwitchLabel>
             </styled.ThemeSwitch>
           </styled.Expanded>
-        </styled.ProfileIcon>
+        )}
       </styled.Wrapper>
     </>
   );
