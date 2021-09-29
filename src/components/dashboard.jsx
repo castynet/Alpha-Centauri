@@ -1,6 +1,7 @@
 import * as styled from "./styles/dashboard.styles";
 import Search from "./search";
 import { Icons } from "./styles/icons.styles";
+import Courses from "./courses";
 
 export default function DashBoard() {
   return (
@@ -32,6 +33,7 @@ export default function DashBoard() {
         </styled.Sidebar>
         <styled.Main>
           <Search />
+          <Courses />
         </styled.Main>
       </styled.Wrapper>
     </>
