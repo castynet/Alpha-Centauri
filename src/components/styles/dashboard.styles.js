@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
 `;
 
@@ -14,6 +14,10 @@ export const Sidebar = styled.div`
   justify-content: space-between;
   flex-direction: column;
   padding-top: 50px;
+  position: fixed;
+  box-shadow: var(--levelOneDropShadow);
+  top: 0;
+  left: 0;
 `;
 
 export const Main = styled.div`
