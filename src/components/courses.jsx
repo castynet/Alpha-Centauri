@@ -3,7 +3,11 @@ import * as styled from "./styles/courses.styles";
 export default function Courses() {
   return (
     <>
-      <p>hello world</p>
+      <styled.Wrapper>
+        {[...Array(5)].map((e, i) => (
+          <styled.Course></styled.Course>
+        ))}
+      </styled.Wrapper>
     </>
   );
 }
