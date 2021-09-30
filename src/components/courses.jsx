@@ -12,6 +12,7 @@ export default function Courses() {
             <p>Progress | Rating</p>
             <p>Continue Learning | Purchase</p>
             <p>Number of enrolled students</p>
+            <p>tutor</p>
           </styled.Course>
         ))}
       </styled.Wrapper>

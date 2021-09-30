@@ -31,9 +31,9 @@ export const Menu = styled.ul`
 `;
 
 export const MenuItem = styled.li`
-  margin: 10px;
+  margin: 20px 10px;
   list-style: none;
-  padding: 10px;
+  padding: 20px 10px;
   box-shadow: var(--levelOneDropShadow);
   border-radius: 2em;
   border: 2px solid aliceblue;
