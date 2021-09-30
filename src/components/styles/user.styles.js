@@ -10,7 +10,10 @@ export const Wrapper = styled.div`
   border-radius: ${(props) => (props.openUser ? "var(--borderRadius)" : "50%")};
   border: 2px solid lightblue;
   transition: var(--smoothTransition);
-  box-shadow: var(--levelOneDropShadow);
+  box-shadow: ${(props) =>
+    props.openUser ? "var(--levelTwoDropShadow)" : "var(--levelOneDropShadow)"};
+  padding: ${(props) => (props.openUser ? "10px" : "none")};
+  background-color: ${(props) => (props.openUser ? "white" : "none")};
 `;
 
 export const ProfileIcon = styled.div`
@@ -50,7 +53,7 @@ export const SwitchLabel = styled.label`
 export const SwitchButton = styled.span`
   content: "";
   position: absolute;
-  border: 2px solid lightcoral;
+  border: 2px solid white;
   left: 2px;
   width: 36px;
   height: 26px;
