@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  padding: 30px;
+  margin: 30px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -16,6 +16,7 @@ export const Course = styled.div`
   box-shadow: var(--levelOneDropShadow);
   border-radius: var(--borderRadius);
   transition: var(--smoothTransition);
+  padding: 10px;
 
   :hover {
     box-shadow: var(--levelTwoDropShadow);
