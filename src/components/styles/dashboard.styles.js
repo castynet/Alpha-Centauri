@@ -38,6 +38,7 @@ export const MenuItem = styled.li`
   border-radius: 2em;
   border: 2px solid aliceblue;
   transition: var(--smoothTransition);
+  font-weight: 600;
 
   :hover {
     cursor: pointer;

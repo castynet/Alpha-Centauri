@@ -15,6 +15,7 @@ export default function SingleCourse() {
       <p> -aa- tests</p>
       <p> -bb- purchase course</p>
       <p> -bb- cost</p>
+      <p> -bb- related courses</p>
       <p>reviews </p>
     </>
   );
