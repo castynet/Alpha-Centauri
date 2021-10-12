@@ -1,4 +1,4 @@
-import * as styled from "./styles/search.styles";
+import * as styled from "./search.styles";
 
 export default function Search() {
   return (

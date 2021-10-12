@@ -1,5 +1,5 @@
 import DashBoard from "./components/dashboard";
-import User from "./components/user";
+import User from "./components/account/user";
 
 function App() {
   return (

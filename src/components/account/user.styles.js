@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Icons } from "./icons.styles";
+import { Icons } from "../icons.styles";
 
 export const Wrapper = styled.div`
   position: absolute;

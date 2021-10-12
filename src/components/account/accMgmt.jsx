@@ -1,4 +1,4 @@
-import * as styled from "./styles/accMgmt.styles";
+import * as styled from "./accMgmt.styles";
 
 export default function AccountManagement() {
   return (

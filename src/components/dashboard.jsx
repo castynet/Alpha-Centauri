@@ -1,8 +1,8 @@
-import * as styled from "./styles/dashboard.styles";
-import Search from "./search";
-import { Icons } from "./styles/icons.styles";
+import * as styled from "./dashboard.styles";
+import Search from "./general/search";
+import { Icons } from "./icons.styles";
 // import Courses from "./courses";
-import AccountManagement from "./accMgmt";
+import AccountManagement from "./account/accMgmt";
 
 export default function DashBoard() {
   return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as styled from "./styles/user.styles.js";
+import * as styled from "./user.styles.js";
 
 export default function DashBoard() {
   const [openUser, setOpenUser] = useState(false);

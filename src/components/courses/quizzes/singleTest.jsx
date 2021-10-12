@@ -1,4 +1,4 @@
-import * as styled from "./styles/singleTest.styles";
+import * as styled from "./singleTest.styles";
 
 export default function SingleTest() {
   return (
