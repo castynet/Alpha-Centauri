@@ -7,3 +7,8 @@ export const Wrapper = styled.div`
   border-radius: var(--borderRadius);
   box-shadow: var(--levelOneDropShadow);
 `;
+
+export const Avatar = styled.img`
+  height: 300px;
+  width: 100%
+`;
