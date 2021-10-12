@@ -5,7 +5,6 @@ export default function AccountManagement() {
     <>
       <styled.Wrapper>
         <styled.Avatar src="" alt="Avatar" />
-        <p>avatar</p>
         <p>first name</p>
         <p>last name</p>
         <p>username</p>
@@ -17,7 +16,7 @@ export default function AccountManagement() {
         <p>parent's phone number</p>
         <p>checkbox | use same number for payments</p>
         <p>no? enter phone number</p>
-        <p>link to delete account</p>
+        <styled.DeleteBtn>Delete Account</styled.DeleteBtn>
       </styled.Wrapper>
     </>
   );
