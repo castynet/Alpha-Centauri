@@ -4,6 +4,7 @@ export default function AccountManagement() {
   return (
     <>
       <styled.Wrapper>
+        <styled.Avatar src="" alt="Avatar" />
         <p>avatar</p>
         <p>first name</p>
         <p>last name</p>
