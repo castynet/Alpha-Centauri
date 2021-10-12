@@ -33,7 +33,7 @@ export const Menu = styled.ul`
 export const MenuItem = styled.li`
   margin: 20px 10px;
   list-style: none;
-  padding: 20px 10px;
+  padding: 15px 10px 15px 20px;
   box-shadow: var(--levelOneDropShadow);
   border-radius: 2em;
   border: 2px solid aliceblue;
