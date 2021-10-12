@@ -10,5 +10,21 @@ export const Wrapper = styled.div`
 
 export const Avatar = styled.img`
   height: 300px;
-  width: 100%
+  width: 100%;
+`;
+
+export const DeleteBtn = styled.button`
+  background-color: #740000;
+  color: #fff;
+  border: none;
+  border-radius: var(--borderRadius);
+  outline: none;
+  padding: 8px 25px;
+  margin: 10px;
+  transition: var(--smoothTransition);
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: var(--levelTwoDropShadow);
+  }
 `;
