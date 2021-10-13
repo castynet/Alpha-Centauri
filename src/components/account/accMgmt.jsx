@@ -1,4 +1,5 @@
 import * as styled from "./accMgmt.styles";
+import { Icons } from "../icons.styles";
 
 export default function AccountManagement() {
   return (
@@ -7,36 +8,79 @@ export default function AccountManagement() {
         <styled.SectionTitle>Personal Details</styled.SectionTitle>
         <styled.Avatar src="" alt="Avatar" />
         <br />
-        <styled.Label htmlFor="userName">Username: </styled.Label>
+        <styled.Label htmlFor="userName">
+          <styled.InnerLabel>Username:</styled.InnerLabel>
+          <Icons.Edit size="18" />
+        </styled.Label>
         <styled.Input type="text" id="userName" />
         <br />
-        <styled.Label htmlFor="firstName">First Name: </styled.Label>
+        <styled.Label htmlFor="firstName">
+          <styled.InnerLabel>First Name:</styled.InnerLabel>
+          <Icons.Edit size="18" />
+        </styled.Label>
         <styled.Input type="text" id="firstName" />
         <br />
-        <styled.Label htmlFor="lastName">Last Name: </styled.Label>
+        <styled.Label htmlFor="lastName">
+          <styled.InnerLabel>Last Name:</styled.InnerLabel>
+          <Icons.Edit size="18" />
+        </styled.Label>
         <styled.Input type="text" id="lastName" />
         <br />
-        <styled.Label htmlFor="email">Email: </styled.Label>
+        <styled.Label htmlFor="email">
+          <styled.InnerLabel>Email:</styled.InnerLabel>
+          <Icons.Edit size="18" />
+        </styled.Label>
         <styled.Input type="text" id="email" />
-        <styled.SectionTitle>Linked Accounts Details</styled.SectionTitle>
-        <p>Google</p>
+        <styled.SectionTitle>Linked Accounts</styled.SectionTitle>
+        <p>
+          <styled.Google size="40" />
+        </p>
         <styled.SectionTitle>Parent's Details</styled.SectionTitle>
-        <styled.Label htmlFor="parentName">Name: </styled.Label>
+        <styled.Label htmlFor="parentName">
+          <styled.InnerLabel>Name: </styled.InnerLabel>
+          <Icons.Edit size="18" />
+        </styled.Label>
         <styled.Input type="text" id="parentName" />
         <br />
-        <styled.Label htmlFor="parentEmail">Email: </styled.Label>
+        <styled.Label htmlFor="parentEmail">
+          <styled.InnerLabel>Email: </styled.InnerLabel>
+          <Icons.Edit size="18" />
+        </styled.Label>
         <styled.Input type="text" id="parentEmail" />
         <br />
-        <styled.Label htmlFor="phoneNumber">Phone: </styled.Label>
+        <styled.Label htmlFor="phoneNumber">
+          <styled.InnerLabel>Phone: </styled.InnerLabel>
+          <Icons.Edit size="18" />
+        </styled.Label>
         <styled.Input type="text" id="phoneNumber" />
         <br />
-        <styled.Input type="checkbox" name="" id="" />
+        <styled.Input
+          type="checkbox"
+          name="phoneNumberPayments"
+          id="phoneNumberPayments"
+        />
         <styled.Label htmlFor="phoneNumberPayments">
-          Use the same number for payments:
+          Use the same number for payments
         </styled.Label>
         {/* <p>no? enter phone number</p> */}
         <styled.SectionTitle>Critical</styled.SectionTitle>
-        <p>password</p>
+        <styled.Label htmlFor="currentPassword">
+          <styled.InnerLabel>Current Password:</styled.InnerLabel>
+          <Icons.Edit size="18" />
+        </styled.Label>
+        <styled.Input type="password" id="currentPassword" />
+        <br />
+        <styled.Label htmlFor="newPassword">
+          <styled.InnerLabel>New Password:</styled.InnerLabel>
+          <Icons.Edit size="18" />
+        </styled.Label>
+        <styled.Input type="password" id="newPassword" />
+        <styled.Label htmlFor="confirmPassword">
+          <styled.InnerLabel>Confirm Password:</styled.InnerLabel>
+          <Icons.Edit size="18" />
+        </styled.Label>
+        <styled.Input type="password" id="confirmPassword" />
+        <br />
         <styled.DeleteBtn>Delete Account</styled.DeleteBtn>
       </styled.Wrapper>
     </>
