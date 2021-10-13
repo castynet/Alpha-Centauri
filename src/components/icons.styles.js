@@ -5,6 +5,8 @@ import { Users } from "@styled-icons/fa-solid";
 import { CommentDots } from "@styled-icons/fa-solid";
 import { GlobeAfrica } from "@styled-icons/fa-solid";
 import { UserAstronaut } from "@styled-icons/fa-solid";
+import { PencilAlt } from "@styled-icons/fa-solid";
+import { Google } from "@styled-icons/fa-brands";
 
 export const Icons = {
   Book: Book,
@@ -14,4 +16,6 @@ export const Icons = {
   Message: CommentDots,
   AllCourses: GlobeAfrica,
   User: UserAstronaut,
+  Edit: PencilAlt,
+  Google: Google,
 };
