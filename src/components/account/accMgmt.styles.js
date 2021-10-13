@@ -28,3 +28,22 @@ export const DeleteBtn = styled.button`
     box-shadow: var(--levelTwoDropShadow);
   }
 `;
+
+export const SectionTitle = styled.h2`
+  border-bottom: solid 1px #aaa;
+  padding: 5px 0;
+  margin: 20px 0 10px;
+`;
+
+export const Label = styled.label`
+  margin: 10px;
+`;
+
+export const Input = styled.input`
+  border: none;
+  border-bottom: 1px solid #000;
+  outline: none;
+  padding: 5px;
+  transition: var(--smoothTransition);
+  margin: 10px 0;
+`;
