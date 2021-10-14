@@ -62,6 +62,12 @@ export default function AccountManagement() {
         <styled.Label htmlFor="phoneNumberPayments">
           Use the same number for payments
         </styled.Label>
+        <br />
+        <styled.Label htmlFor="parentPhoneNumber">
+          <styled.InnerLabel>Mpesa Phone: </styled.InnerLabel>
+          <Icons.Edit size="18" />
+        </styled.Label>
+        <styled.Input type="text" id="parentPhoneNumber" />
         {/* <p>no? enter phone number</p> */}
         <styled.SectionTitle>Critical</styled.SectionTitle>
         <styled.Label htmlFor="currentPassword">
