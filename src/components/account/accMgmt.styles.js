@@ -15,7 +15,7 @@ export const Avatar = styled.img`
 `;
 
 export const DeleteBtn = styled.button`
-  background-color: #740000;
+  background-color: red;
   color: #fff;
   border: none;
   border-radius: var(--borderRadius);
