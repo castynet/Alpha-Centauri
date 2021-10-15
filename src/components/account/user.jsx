@@ -22,12 +22,15 @@ export default function DashBoard() {
           </styled.ProfileIcon>
         ) : (
           <styled.Expanded openUser={openUser}>
-            <img src="" alt="User Profile" />
-            <p>my account</p>
-            <p>logout</p>
-            <p>edit profile</p>
-            <p>settings</p>
-            <p>payments</p>
+            <styled.UserInnerImg>
+              <img src="" alt="User Profile" />
+            </styled.UserInnerImg>
+            <styled.ProfileInfo>Signed in as Max</styled.ProfileInfo>
+            <styled.ActionWrap>
+              <styled.UserAction>Edit Profile</styled.UserAction>
+              <styled.UserAction>Payments</styled.UserAction>
+            </styled.ActionWrap>
+            <styled.Logout>Logout</styled.Logout>
             <styled.ThemeSwitch>
               <styled.SwitchInput
                 id="switch"
