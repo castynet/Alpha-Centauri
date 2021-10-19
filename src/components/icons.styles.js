@@ -7,6 +7,7 @@ import { GlobeAfrica } from "@styled-icons/fa-solid";
 import { UserAstronaut } from "@styled-icons/fa-solid";
 import { PencilAlt } from "@styled-icons/fa-solid";
 import { Google } from "@styled-icons/fa-brands";
+import { TimesCircle } from "@styled-icons/fa-regular/TimesCircle";
 
 export const Icons = {
   Book: Book,
@@ -18,4 +19,5 @@ export const Icons = {
   User: UserAstronaut,
   Edit: PencilAlt,
   Google: Google,
+  Close: TimesCircle,
 };
