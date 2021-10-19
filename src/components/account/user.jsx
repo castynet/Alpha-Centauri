@@ -15,37 +15,44 @@ export default function DashBoard() {
 
   return (
     <>
+      <styled.Overlay
+        onClick={() => expandUser()}
+        openUser={openUser}
+      ></styled.Overlay>
       <styled.Wrapper openUser={openUser}>
         {!openUser ? (
           <styled.ProfileIcon onClick={() => expandUser()}>
             <styled.UserIcon title="View Courses" />
           </styled.ProfileIcon>
         ) : (
-          <styled.Expanded openUser={openUser}>
-            <styled.UserInnerImg>
-              <img src="" alt="User Profile" />
-            </styled.UserInnerImg>
-            <styled.ProfileInfo>Signed in as Max</styled.ProfileInfo>
-            <styled.ActionWrap>
-              <styled.UserAction>Edit Profile</styled.UserAction>
-              <styled.UserAction>Payments</styled.UserAction>
-            </styled.ActionWrap>
-            <styled.Logout>Logout</styled.Logout>
-            <styled.ThemeSwitch>
-              <styled.SwitchInput
-                id="switch"
-                type="checkbox"
-                onChange={() => toggleTheme()}
-                checked={darkTheme}
-              />
-              <styled.SwitchLabel htmlFor="switch">
-                <styled.SwitchButton />
-              </styled.SwitchLabel>
-              <styled.ThemeSwitchLabel>
-                {darkTheme ? "Light" : "Dark"} Theme
-              </styled.ThemeSwitchLabel>
-            </styled.ThemeSwitch>
-          </styled.Expanded>
+          <>
+            <styled.Expanded openUser={openUser}>
+              <styled.Close onClick={() => expandUser()} />
+              <styled.UserInnerImg>
+                <img src="" alt="User Profile" />
+              </styled.UserInnerImg>
+              <styled.ProfileInfo>Signed in as Max</styled.ProfileInfo>
+              <styled.ActionWrap>
+                <styled.UserAction>Edit Profile</styled.UserAction>
+                <styled.UserAction>Payments</styled.UserAction>
+              </styled.ActionWrap>
+              <styled.Logout>Logout</styled.Logout>
+              <styled.ThemeSwitch>
+                <styled.SwitchInput
+                  id="switch"
+                  type="checkbox"
+                  onChange={() => toggleTheme()}
+                  checked={darkTheme}
+                />
+                <styled.SwitchLabel htmlFor="switch">
+                  <styled.SwitchButton />
+                </styled.SwitchLabel>
+                <styled.ThemeSwitchLabel>
+                  {darkTheme ? "Light" : "Dark"} Theme
+                </styled.ThemeSwitchLabel>
+              </styled.ThemeSwitch>
+            </styled.Expanded>
+          </>
         )}
       </styled.Wrapper>
     </>
