@@ -29,6 +29,7 @@ export const ProfileIcon = styled.div`
 
 export const Expanded = styled.div`
   display: ${(props) => (props.openUser ? "block" : "none")};
+  z-index: 1;
 `;
 
 export const SwitchInput = styled.input`
@@ -146,4 +147,24 @@ export const ActionWrap = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+`;
+
+export const Overlay = styled.div`
+  display: ${(props) => (props.openUser ? "block" : "none")};
+  position: fixed;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 10, 10, 0.4);
+`;
+
+export const Close = styled(Icons.Close)`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  color: red;
+  width: 25px;
 `;
