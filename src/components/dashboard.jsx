@@ -11,29 +11,29 @@ export default function DashBoard() {
         <styled.Sidebar>
           <styled.Menu>
             <styled.MenuItem>
-              <Icons.Book size="18" title="View Courses" />
+              <Icons.Book size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; Courses
             </styled.MenuItem>
             <styled.MenuItem>
-              <Icons.Assignment size="18" title="View Courses" />
+              <Icons.Assignment size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; Assignments
             </styled.MenuItem>
             <styled.MenuItem>
-              <Icons.Tests size="18" title="View Courses" />
+              <Icons.Tests size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; Tests
             </styled.MenuItem>
             <styled.MenuItem>
-              <Icons.Community size="18" title="View Courses" />
+              <Icons.Community size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; Community
             </styled.MenuItem>
           </styled.Menu>
           <styled.BrowseMenu>
             <styled.BrowseMenuItem>
-              <Icons.Message size="18" title="View Courses" />
+              <Icons.Message size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; Messages
             </styled.BrowseMenuItem>
             <styled.BrowseMenuItem>
-              <Icons.AllCourses size="18" title="View Courses" />
+              <Icons.AllCourses size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; All Courses
             </styled.BrowseMenuItem>
           </styled.BrowseMenu>
