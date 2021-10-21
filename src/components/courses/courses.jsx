@@ -1,20 +1,21 @@
-import * as styled from "./styles/courses.styles";
+import * as styled from "./courses.styles";
 
 export default function Courses() {
   return (
     <>
       <styled.Wrapper>
-        {[...Array(5)].map((e, i) => (
-          <styled.Course>
-            <p>Course Title</p>
-            <p>Course Description</p>
-            <p>Course Image</p>
-            <p>Progress | Rating</p>
-            <p>Continue Learning | Purchase</p>
-            <p>Number of enrolled students</p>
-            <p>tutor</p>
-          </styled.Course>
-        ))}
+        <styled.Title> All Courses</styled.Title>
+        <styled.CourseWrapper>
+          {[...Array(5)].map((e, i) => (
+            <styled.Course>
+              <styled.CourseImage
+                src="https://digikids.co.ke/wp-content/uploads/2019/05/minecraft.png"
+                alt="courseImage"
+              />
+              <styled.CourseTitle>Course Title</styled.CourseTitle>
+            </styled.Course>
+          ))}
+        </styled.CourseWrapper>
       </styled.Wrapper>
     </>
   );
