@@ -1,10 +1,23 @@
-import * as styled from "./styles/assignments.styles";
+import * as styled from "./assignments.styles";
 
 export default function Assignments() {
   return (
     <>
       <styled.Wrapper>
-        <p>Hello World</p>
+        <styled.Title>Assignments</styled.Title>
+        <styled.AssignmentWrapper>
+          {[...Array(5)].map((e, i) => (
+            <styled.Assignment>
+              Assignment Title
+              <br /> Due Date
+              <br /> Done?
+              <br /> Grade?
+              <br /> Course
+              <br /> Est Duration
+              <br /> View
+            </styled.Assignment>
+          ))}
+        </styled.AssignmentWrapper>
       </styled.Wrapper>
     </>
   );
