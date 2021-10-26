@@ -1,8 +1,7 @@
 import * as styled from "./dashboard.styles";
 import Search from "./general/search";
 import { Icons } from "./icons.styles";
-// import Courses from "./courses";
-import AccountManagement from "./account/accMgmt";
+import Assignments from "./courses/assignments/assignments";
 
 export default function DashBoard() {
   return (
@@ -26,6 +25,10 @@ export default function DashBoard() {
               <Icons.Community size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; Community
             </styled.MenuItem>
+            <styled.MenuItem>
+              <Icons.Certificate size="18" title="View Courses" color="white" />
+              &nbsp;&nbsp;&nbsp; Certificates
+            </styled.MenuItem>
           </styled.Menu>
           <styled.BrowseMenu>
             <styled.BrowseMenuItem>
@@ -40,7 +43,7 @@ export default function DashBoard() {
         </styled.Sidebar>
         <styled.Main>
           <Search />
-          <AccountManagement />
+          <Assignments />
         </styled.Main>
       </styled.Wrapper>
     </>
