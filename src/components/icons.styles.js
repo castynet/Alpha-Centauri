@@ -8,6 +8,7 @@ import { UserAstronaut } from "@styled-icons/fa-solid";
 import { PencilAlt } from "@styled-icons/fa-solid";
 import { Google } from "@styled-icons/fa-brands";
 import { TimesCircle } from "@styled-icons/fa-regular/TimesCircle";
+import { Award } from "@styled-icons/fa-solid";
 
 export const Icons = {
   Book: Book,
@@ -20,4 +21,5 @@ export const Icons = {
   Edit: PencilAlt,
   Google: Google,
   Close: TimesCircle,
+  Certificate: Award,
 };
