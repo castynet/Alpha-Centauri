@@ -16,7 +16,7 @@ export const Input = styled.input`
   transition: var(--smoothTransition);
 
   :focus {
-    cursor: pointer;
+    cursor: text;
     box-shadow: var(--levelTwoDropShadow);
   }
 `;
