@@ -1,7 +1,7 @@
 import * as styled from "./dashboard.styles";
 import Search from "./general/search";
 import { Icons } from "./icons.styles";
-import Assignments from "./courses/assignments/assignments";
+import Certificates from "./certificates/certificates";
 
 export default function DashBoard() {
   return (
@@ -43,7 +43,7 @@ export default function DashBoard() {
         </styled.Sidebar>
         <styled.Main>
           <Search />
-          <Assignments />
+          <Certificates />
         </styled.Main>
       </styled.Wrapper>
     </>
