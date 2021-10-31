@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 const Context = React.createContext();
 
-export function useApi() {
+export function useApp() {
   return useContext(Context);
 }
 
 export const ContextProvider = ({ children }) => {
-  const hello = "hello";
+  const [view, setView] = useState("Courses");
 
-  return <Context.Provider value={{ hello }}>{children}</Context.Provider>;
+  return (
+    <Context.Provider value={{ view, setView }}>{children}</Context.Provider>
+  );
 };
