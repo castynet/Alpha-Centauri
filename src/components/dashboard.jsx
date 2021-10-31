@@ -1,40 +1,70 @@
 import * as styled from "./dashboard.styles";
-import Search from "./general/search";
+
 import { Icons } from "./icons.styles";
+import { useApp } from "./context";
+
+import Search from "./general/search";
+import Community from "./community/community";
+import Courses from "./courses/courses";
+import Assignments from "./courses/assignments/assignments";
+import Quizzes from "./courses/quizzes/tests";
 import Certificates from "./certificates/certificates";
 
 export default function DashBoard() {
+  const app = useApp();
+
+  const View = () => {
+    switch (app.view) {
+      case "Community":
+        return <Community />;
+      case "Courses":
+        return <Courses />;
+      case "Assignments":
+        return <Assignments />;
+      case "Quizzes":
+        return <Quizzes />;
+      case "Certificates":
+        return <Certificates />;
+      default:
+        return <Courses />;
+    }
+  };
+
+  const handleView = (view) => {
+    app.setView(view);
+  };
+
   return (
     <>
       <styled.Wrapper>
         <styled.Sidebar>
           <styled.Menu>
-            <styled.MenuItem>
+            <styled.MenuItem onClick={() => handleView("Courses")}>
               <Icons.Book size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; Courses
             </styled.MenuItem>
-            <styled.MenuItem>
-              <Icons.Assignment size="18" title="View Courses" color="white" />
+            <styled.MenuItem onClick={() => handleView("Assignments")}>
+              <Icons.Assignment size="18" title="Assignments" color="white" />
               &nbsp;&nbsp;&nbsp; Assignments
             </styled.MenuItem>
-            <styled.MenuItem>
-              <Icons.Tests size="18" title="View Courses" color="white" />
+            <styled.MenuItem onClick={() => handleView("Quizzes")}>
+              <Icons.Tests size="18" title="Quizzes" color="white" />
               &nbsp;&nbsp;&nbsp; Tests
             </styled.MenuItem>
-            <styled.MenuItem>
-              <Icons.Community size="18" title="View Courses" color="white" />
+            <styled.MenuItem onClick={() => handleView("Community")}>
+              <Icons.Community size="18" title="Community" color="white" />
               &nbsp;&nbsp;&nbsp; Community
             </styled.MenuItem>
-            <styled.MenuItem>
-              <Icons.Certificate size="18" title="View Courses" color="white" />
+            <styled.MenuItem onClick={() => handleView("Certificates")}>
+              <Icons.Certificate size="18" title="Certificates" color="white" />
               &nbsp;&nbsp;&nbsp; Certificates
             </styled.MenuItem>
           </styled.Menu>
           <styled.BrowseMenu>
-            <styled.BrowseMenuItem>
+            {/* <styled.BrowseMenuItem>
               <Icons.Message size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; Messages
-            </styled.BrowseMenuItem>
+            </styled.BrowseMenuItem> */}
             <styled.BrowseMenuItem>
               <Icons.AllCourses size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; All Courses
@@ -43,7 +73,7 @@ export default function DashBoard() {
         </styled.Sidebar>
         <styled.Main>
           <Search />
-          <Certificates />
+          <View />
         </styled.Main>
       </styled.Wrapper>
     </>
