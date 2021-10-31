@@ -13,7 +13,7 @@ export const Sidebar = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding-top: 50px;
+  padding-top: 75px;
   position: fixed;
   box-shadow: var(--levelOneDropShadow);
   top: 0;
