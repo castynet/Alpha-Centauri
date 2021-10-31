@@ -1,4 +1,4 @@
-import * as styled from "./styles/tests.styles";
+import * as styled from "./tests.styles";
 
 export default function Tests() {
   return (
