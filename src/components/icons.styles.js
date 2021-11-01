@@ -9,6 +9,7 @@ import { PencilAlt } from "@styled-icons/fa-solid";
 import { Google } from "@styled-icons/fa-brands";
 import { TimesCircle } from "@styled-icons/fa-regular/TimesCircle";
 import { Award } from "@styled-icons/fa-solid";
+import { SignInAlt } from "@styled-icons/fa-solid/SignInAlt";
 
 export const Icons = {
   Book: Book,
@@ -22,4 +23,6 @@ export const Icons = {
   Google: Google,
   Close: TimesCircle,
   Certificate: Award,
+  Register: PencilAlt,
+  Login: SignInAlt,
 };
