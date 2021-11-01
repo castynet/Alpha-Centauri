@@ -4,7 +4,20 @@ export default function Tests() {
   return (
     <>
       <styled.Wrapper>
-        <p>Hello World</p>
+        <styled.Title>Tests</styled.Title>
+        <styled.TestWrapper>
+          {[...Array(10)].map((e, i) => (
+            <styled.Test>
+              Test Title
+              <br /> Due Date
+              <br /> Done?
+              <br /> Grade?
+              <br /> Course
+              <br /> Est Duration
+              <br /> View
+            </styled.Test>
+          ))}
+        </styled.TestWrapper>
       </styled.Wrapper>
     </>
   );
