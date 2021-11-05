@@ -14,17 +14,17 @@ export default function AccountManagement() {
         </styled.Label>
         <styled.Input type="text" id="userName" />
         <br />
-        <styled.Label htmlFor="firstName">
-          <styled.InnerLabel>First Name:</styled.InnerLabel>
+        <styled.Label htmlFor="Name">
+          <styled.InnerLabel>Name:</styled.InnerLabel>
           <Icons.Edit size="18" />
         </styled.Label>
         <styled.Input type="text" id="firstName" />
         <br />
-        <styled.Label htmlFor="lastName">
-          <styled.InnerLabel>Last Name:</styled.InnerLabel>
+        <styled.Label htmlFor="dob">
+          <styled.InnerLabel>Date of Birth:</styled.InnerLabel>
           <Icons.Edit size="18" />
         </styled.Label>
-        <styled.Input type="text" id="lastName" />
+        <styled.Input type="date" id="dob" />
         <br />
         <styled.Label htmlFor="email">
           <styled.InnerLabel>Email:</styled.InnerLabel>
