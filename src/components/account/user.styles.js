@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   position: absolute;
   right: 40px;
   top: 20px;
-  height: ${(props) => (props.openUser ? "320px" : "60px")};
+  height: ${(props) => (props.openUser ? "300px" : "60px")};
   width: ${(props) => (props.openUser ? "350px" : "60px")};
   border-radius: ${(props) => (props.openUser ? "var(--borderRadius)" : "50%")};
   border: 2px solid lightblue;
@@ -92,11 +92,15 @@ export const UserIcon = styled(Icons.User)`
 `;
 
 export const UserInnerImg = styled.div`
-  height: 150px;
-  width: 150px;
+  height: 130px;
+  width: 130px;
   background-color: #000;
   border-radius: 50%;
   margin: 10px auto;
+
+  img {
+    width: 100%;
+  }
 `;
 
 export const Logout = styled.p`
