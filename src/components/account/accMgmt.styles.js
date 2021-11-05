@@ -10,8 +10,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Avatar = styled.img`
-  height: 300px;
-  width: 100%;
+  width: 100px;
+  height: auto;
 `;
 
 export const DeleteBtn = styled.button`
@@ -20,7 +20,7 @@ export const DeleteBtn = styled.button`
   border: none;
   border-radius: var(--borderRadius);
   outline: none;
-  padding: 8px 25px;
+  padding: 7px 25px;
   margin: 10px;
   transition: var(--smoothTransition);
 
@@ -55,6 +55,7 @@ export const Input = styled.input`
   transition: var(--smoothTransition);
   margin: 10px 0;
   border-bottom: 1px solid #fff;
+  width: 300px;
 
   &:focus {
     border-bottom: 1px solid #aaa;
@@ -64,10 +65,23 @@ export const Input = styled.input`
 export const InnerLabel = styled.span`
   display: inline-block;
   min-width: 170px;
-
-
 `;
 
 export const Google = styled(Icons.Google)`
   margin: 10px 20px 0;
+`;
+
+export const SaveBtn = styled.input`
+  border: none;
+  color: white;
+  background-color: green;
+  padding: 7px 25px;
+  margin: 10px;
+  border-radius: var(--borderRadius);
+  transition: var(--smoothTransition);
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: var(--levelTwoDropShadow);
+  }
 `;
