@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig } from "./firebase";
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 
 const Context = React.createContext();
 
@@ -11,7 +12,9 @@ const firebaseApp = initializeApp(firebaseConfig);
 // Firebase Auth
 const provider = new GoogleAuthProvider();
 const auth = getAuth(firebaseApp);
+const db = getFirestore();
 
+// The app access point
 export function useApp() {
   return useContext(Context);
 }
@@ -22,12 +25,29 @@ export const ContextProvider = ({ children }) => {
   const [signedIn, setSignedIn] = useState(false);
   const [view, setView] = useState("Courses");
   const [theme, setTheme] = useState("light");
+  let userRef;
 
+  function AddUserToDb(content) {
+    setDoc(userRef, content, { merge: true });
+  }
+
+  // sign the user in then send them to complete acc page or courses
   async function signIn() {
     const result = await signInWithPopup(auth, provider);
     const credential = await GoogleAuthProvider.credentialFromResult(result);
     setToken(credential.accessToken);
     setUser(result.user);
+    userRef = doc(db, "users", result.user.uid);
+    const docSnap = await getDoc(userRef);
+    if (!docSnap.exists()) {
+      setView("AccMgmt");
+      var content = {
+        displayName: result.user.displayName,
+        phoneNumber: result.user.phoneNumber,
+        avatar: result.user.photoURL,
+      };
+      AddUserToDb(content);
+    }
   }
 
   return (
@@ -42,6 +62,7 @@ export const ContextProvider = ({ children }) => {
         user,
         token,
         signIn,
+        AddUserToDb,
       }}
     >
       {children}
