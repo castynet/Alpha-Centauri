@@ -9,6 +9,7 @@ import Courses from "./courses/courses";
 import Assignments from "./courses/assignments/assignments";
 import Quizzes from "./courses/quizzes/tests";
 import Certificates from "./certificates/certificates";
+import AccMgmt from "./account/accMgmt";
 
 export default function DashBoard() {
   const app = useApp();
@@ -25,6 +26,8 @@ export default function DashBoard() {
         return <Quizzes />;
       case "Certificates":
         return <Certificates />;
+      case "AccMgmt":
+        return <AccMgmt />;
       default:
         return <Courses />;
     }
