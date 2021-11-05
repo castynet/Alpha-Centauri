@@ -12,7 +12,7 @@ export default function Auth() {
         <styled.ButtonWrapper>
           <styled.Button onClick={() => app.signIn()}>
             <Icons.Google size="20" />
-            <styled.BtnText>Sign in with Google</styled.BtnText>
+            <styled.BtnText>Continue with Google</styled.BtnText>
           </styled.Button>
           <styled.Button>
             <Icons.Login size="20" />
