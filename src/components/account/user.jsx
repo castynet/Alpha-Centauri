@@ -31,9 +31,11 @@ export default function DashBoard() {
             <styled.Expanded openUser={openUser}>
               <styled.Close onClick={() => expandUser()} />
               <styled.UserInnerImg>
-                <img src="" alt="User Profile" />
+                <img src={app.user.photoURL} alt="User Profile" />
               </styled.UserInnerImg>
-              <styled.ProfileInfo>Signed in as Max</styled.ProfileInfo>
+              <styled.ProfileInfo>
+                Signed in as <u>{app.user.displayName}</u>
+              </styled.ProfileInfo>
               <styled.ActionWrap>
                 <styled.UserAction onClick={() => app.setView("AccMgmt")}>
                   Edit Profile
