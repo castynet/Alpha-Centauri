@@ -1,12 +1,19 @@
+import { useState } from "react";
 import * as styled from "./accMgmt.styles";
 import { Icons } from "../icons.styles";
+import { useApp } from "../context";
 
 export default function AccountManagement() {
+  const [displayName, setDisplayName] = useState("initial");
+  const [email, setEmail] = useState("initial");
+
+  const app = useApp();
+
   return (
     <>
       <styled.Wrapper>
         <styled.SectionTitle>Personal Details</styled.SectionTitle>
-        <styled.Avatar src="" alt="Avatar" />
+        <styled.Avatar src={app.user.photoURL} alt="Avatar" />
         <br />
         <styled.Label htmlFor="userName">
           <styled.InnerLabel>Username:</styled.InnerLabel>
@@ -18,7 +25,12 @@ export default function AccountManagement() {
           <styled.InnerLabel>Name:</styled.InnerLabel>
           <Icons.Edit size="18" />
         </styled.Label>
-        <styled.Input type="text" id="firstName" />
+        <styled.Input
+          type="text"
+          id="Name"
+          value={displayName !== "initial" ? displayName : app.user.displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+        />
         <br />
         <styled.Label htmlFor="dob">
           <styled.InnerLabel>Date of Birth:</styled.InnerLabel>
@@ -30,7 +42,12 @@ export default function AccountManagement() {
           <styled.InnerLabel>Email:</styled.InnerLabel>
           <Icons.Edit size="18" />
         </styled.Label>
-        <styled.Input type="text" id="email" />
+        <styled.Input
+          type="text"
+          id="email"
+          value={email !== "initial" ? email : app.user.email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <styled.SectionTitle>Linked Accounts</styled.SectionTitle>
         <p>
           <styled.Google size="40" />
@@ -69,6 +86,8 @@ export default function AccountManagement() {
         </styled.Label>
         <styled.Input type="text" id="parentPhoneNumber" />
         {/* <p>no? enter phone number</p> */}
+        <br />
+        <styled.SaveBtn type="submit" value="Save Info" />
         <styled.SectionTitle>Critical</styled.SectionTitle>
         <styled.Label htmlFor="currentPassword">
           <styled.InnerLabel>Current Password:</styled.InnerLabel>
