@@ -25,9 +25,10 @@ export const ContextProvider = ({ children }) => {
   const [signedIn, setSignedIn] = useState(false);
   const [view, setView] = useState("Courses");
   const [theme, setTheme] = useState("light");
-  let userRef;
+  const [userRef, setUserRef] = useState(null);
 
-  function AddUserToDb(content) {
+  // send user info to db
+  function AddUserToDb(content, userRef) {
     setDoc(userRef, content, { merge: true });
   }
 
@@ -36,9 +37,8 @@ export const ContextProvider = ({ children }) => {
     const result = await signInWithPopup(auth, provider);
     const credential = await GoogleAuthProvider.credentialFromResult(result);
     setToken(credential.accessToken);
-    setUser(result.user);
-    userRef = doc(db, "users", result.user.uid);
-    const docSnap = await getDoc(userRef);
+    setUserRef(doc(db, "users", result.user.uid));
+    const docSnap = await getDoc(doc(db, "users", result.user.uid));
     if (!docSnap.exists()) {
       setView("AccMgmt");
       var content = {
@@ -46,7 +46,9 @@ export const ContextProvider = ({ children }) => {
         phoneNumber: result.user.phoneNumber,
         avatar: result.user.photoURL,
       };
-      AddUserToDb(content);
+      AddUserToDb(content, doc(db, "users", result.user.uid));
+    } else {
+      setUser(docSnap.data());
     }
   }
 
@@ -63,6 +65,7 @@ export const ContextProvider = ({ children }) => {
         token,
         signIn,
         AddUserToDb,
+        userRef,
       }}
     >
       {children}
