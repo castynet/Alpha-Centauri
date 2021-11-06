@@ -7,10 +7,12 @@ export const Wrapper = styled.div`
   background-color: white;
   border-radius: var(--borderRadius);
   box-shadow: var(--levelOneDropShadow);
+  transition: var(--smoothTransition);
 `;
 
 export const Avatar = styled.img`
   width: 100px;
+  border-radius: 50%;
   height: auto;
 `;
 
@@ -57,6 +59,10 @@ export const Input = styled.input`
   border-bottom: 1px solid #fff;
   width: 300px;
 
+  &.checkbox {
+    margin-left: 20px;
+    width: auto;
+  }
   &:focus {
     border-bottom: 1px solid #aaa;
   }
@@ -84,4 +90,8 @@ export const SaveBtn = styled.input`
     cursor: pointer;
     box-shadow: var(--levelTwoDropShadow);
   }
+`;
+
+export const AltMpesaNumber = styled.div`
+  display: ${(props) => (props.mpesaPhone === "true" ? "none" : "block")};
 `;
