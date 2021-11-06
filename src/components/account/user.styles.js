@@ -22,6 +22,7 @@ export const ProfileIcon = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
+
   :hover {
     cursor: pointer;
   }
@@ -100,6 +101,7 @@ export const UserInnerImg = styled.div`
 
   img {
     width: 100%;
+    border-radius: 50%;
   }
 `;
 
