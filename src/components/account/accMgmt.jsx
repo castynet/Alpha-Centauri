@@ -4,22 +4,47 @@ import { Icons } from "../icons.styles";
 import { useApp } from "../context";
 
 export default function AccountManagement() {
-  const [displayName, setDisplayName] = useState("initial");
-  const [email, setEmail] = useState("initial");
-
   const app = useApp();
+
+  const [displayName, setDisplayName] = useState(app.user.displayName);
+  const [email, setEmail] = useState(app.user.email);
+  const [username, setUsername] = useState(app.user.username);
+  const [parentName, setParentName] = useState(app.user.parentName);
+  const [parentEmail, setParentEmail] = useState(app.user.parentEmail);
+  const [parentPhone, setParentPhone] = useState(app.user.parentPhone);
+  const [mpesaPhone, setMpesaPhone] = useState("true");
+  const [dob, setDob] = useState(app.user.dob);
+
+  const handleSubmit = () => {
+    const content = {
+      displayName: displayName,
+      email: email,
+      username: username,
+      parentName: parentName,
+      parentEmail: parentEmail,
+      parentPhone: parentPhone,
+      mpesaPhone: mpesaPhone,
+      dob: dob,
+    };
+    app.AddUserToDb(content, app.userRef);
+  };
 
   return (
     <>
       <styled.Wrapper>
         <styled.SectionTitle>Personal Details</styled.SectionTitle>
-        <styled.Avatar src={app.user.photoURL} alt="Avatar" />
+        <styled.Avatar src={app.user.avatar} alt="Avatar" />
         <br />
         <styled.Label htmlFor="userName">
           <styled.InnerLabel>Username:</styled.InnerLabel>
           <Icons.Edit size="18" />
         </styled.Label>
-        <styled.Input type="text" id="userName" />
+        <styled.Input
+          type="text"
+          id="userName"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <br />
         <styled.Label htmlFor="Name">
           <styled.InnerLabel>Name:</styled.InnerLabel>
@@ -28,7 +53,7 @@ export default function AccountManagement() {
         <styled.Input
           type="text"
           id="Name"
-          value={displayName !== "initial" ? displayName : app.user.displayName}
+          value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
         />
         <br />
@@ -36,7 +61,12 @@ export default function AccountManagement() {
           <styled.InnerLabel>Date of Birth:</styled.InnerLabel>
           <Icons.Edit size="18" />
         </styled.Label>
-        <styled.Input type="date" id="dob" />
+        <styled.Input
+          type="date"
+          id="dob"
+          value={dob !== "initial" ? dob : app.user.dob}
+          onChange={(e) => setDob(e.target.value)}
+        />
         <br />
         <styled.Label htmlFor="email">
           <styled.InnerLabel>Email:</styled.InnerLabel>
@@ -45,7 +75,7 @@ export default function AccountManagement() {
         <styled.Input
           type="text"
           id="email"
-          value={email !== "initial" ? email : app.user.email}
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <styled.SectionTitle>Linked Accounts</styled.SectionTitle>
@@ -57,37 +87,74 @@ export default function AccountManagement() {
           <styled.InnerLabel>Name: </styled.InnerLabel>
           <Icons.Edit size="18" />
         </styled.Label>
-        <styled.Input type="text" id="parentName" />
+        <styled.Input
+          type="text"
+          id="parentName"
+          value={parentName}
+          onChange={(e) => setParentName(e.target.value)}
+        />
         <br />
         <styled.Label htmlFor="parentEmail">
           <styled.InnerLabel>Email: </styled.InnerLabel>
           <Icons.Edit size="18" />
         </styled.Label>
-        <styled.Input type="text" id="parentEmail" />
+        <styled.Input
+          type="text"
+          id="parentEmail"
+          value={parentEmail}
+          onChange={(e) => setParentEmail(e.target.value)}
+        />
         <br />
         <styled.Label htmlFor="phoneNumber">
           <styled.InnerLabel>Phone: </styled.InnerLabel>
           <Icons.Edit size="18" />
         </styled.Label>
-        <styled.Input type="text" id="phoneNumber" />
-        <br />
         <styled.Input
-          type="checkbox"
-          name="phoneNumberPayments"
-          id="phoneNumberPayments"
+          type="number"
+          id="phoneNumber"
+          value={parentPhone}
+          onChange={(e) => setParentPhone(e.target.value)}
         />
+        <br />
         <styled.Label htmlFor="phoneNumberPayments">
           Use the same number for payments
         </styled.Label>
+        <styled.Input
+          className="checkbox"
+          type="checkbox"
+          name="phoneNumberPayments"
+          id="phoneNumberPayments"
+          value={
+            mpesaPhone === "true" || mpesaPhone === parentPhone
+              ? "false"
+              : "true"
+          }
+          checked={mpesaPhone === "true" || mpesaPhone === parentPhone}
+          onChange={(e) => setMpesaPhone(e.target.value)}
+        />
         <br />
-        <styled.Label htmlFor="parentPhoneNumber">
-          <styled.InnerLabel>Mpesa Phone: </styled.InnerLabel>
-          <Icons.Edit size="18" />
-        </styled.Label>
-        <styled.Input type="text" id="parentPhoneNumber" />
-        {/* <p>no? enter phone number</p> */}
-        <br />
-        <styled.SaveBtn type="submit" value="Save Info" />
+        <styled.AltMpesaNumber mpesaPhone={mpesaPhone}>
+          <styled.Label htmlFor="parentPhoneNumber">
+            <styled.InnerLabel>Mpesa Phone: </styled.InnerLabel>
+            <Icons.Edit size="18" />
+          </styled.Label>
+          <styled.Input
+            type="number"
+            id="parentPhoneNumber"
+            value={
+              mpesaPhone === "false" || mpesaPhone === "true"
+                ? "07"
+                : mpesaPhone
+            }
+            onChange={(e) => setMpesaPhone(e.target.value)}
+          />
+          {/* <p>no? enter phone number</p> */}
+        </styled.AltMpesaNumber>
+        <styled.SaveBtn
+          type="submit"
+          value="Save Info"
+          onClick={() => handleSubmit()}
+        />
         <styled.SectionTitle>Critical</styled.SectionTitle>
         <styled.Label htmlFor="currentPassword">
           <styled.InnerLabel>Current Password:</styled.InnerLabel>
