@@ -31,7 +31,7 @@ export default function DashBoard() {
             <styled.Expanded openUser={openUser}>
               <styled.Close onClick={() => expandUser()} />
               <styled.UserInnerImg>
-                <img src={app.user.photoURL} alt="User Profile" />
+                <img src={app.user.avatar} alt="User Profile" />
               </styled.UserInnerImg>
               <styled.ProfileInfo>
                 Signed in as <u>{app.user.displayName}</u>
