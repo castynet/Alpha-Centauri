@@ -26,6 +26,7 @@ export const ContextProvider = ({ children }) => {
   const [view, setView] = useState("Courses");
   const [theme, setTheme] = useState("light");
   const [userRef, setUserRef] = useState(null);
+  const [rawUser, setRawUser] = useState(null);
 
   // send user info to db
   function AddUserToDb(content, userRef) {
@@ -38,6 +39,7 @@ export const ContextProvider = ({ children }) => {
     const credential = await GoogleAuthProvider.credentialFromResult(result);
     setToken(credential.accessToken);
     setUserRef(doc(db, "users", result.user.uid));
+    setRawUser(result.user);
     const docSnap = await getDoc(doc(db, "users", result.user.uid));
     if (!docSnap.exists()) {
       setView("AccMgmt");
@@ -66,6 +68,7 @@ export const ContextProvider = ({ children }) => {
         signIn,
         AddUserToDb,
         userRef,
+        rawUser,
       }}
     >
       {children}
