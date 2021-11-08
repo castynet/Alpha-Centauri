@@ -1,8 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig } from "./firebase";
-import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  getFirestore,
+  setDoc,
+  getDocs,
+  collection,
+} from "firebase/firestore";
 
 const Context = React.createContext();
 
@@ -27,6 +34,21 @@ export const ContextProvider = ({ children }) => {
   const [theme, setTheme] = useState("light");
   const [userRef, setUserRef] = useState(null);
   const [rawUser, setRawUser] = useState(null);
+  const [courses, setCourses] = useState(null);
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
+  // fetch courses from firebase
+  const fetchCourses = async () => {
+    const coursesSnapshot = await getDocs(collection(db, "courses"));
+    const courses = [];
+    coursesSnapshot.forEach((doc) => {
+      courses.push(doc.data());
+    });
+    setCourses(courses);
+  };
 
   // send user info to db
   function AddUserToDb(content, userRef) {
@@ -69,6 +91,7 @@ export const ContextProvider = ({ children }) => {
         AddUserToDb,
         userRef,
         rawUser,
+        courses,
       }}
     >
       {children}
