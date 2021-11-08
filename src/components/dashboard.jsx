@@ -18,7 +18,9 @@ export default function DashBoard() {
     switch (app.view) {
       case "Community":
         return <Community />;
-      case "Courses":
+      case "My Courses":
+        return <Courses />;
+      case "All Courses":
         return <Courses />;
       case "Assignments":
         return <Assignments />;
@@ -42,7 +44,7 @@ export default function DashBoard() {
       <styled.Wrapper>
         <styled.Sidebar>
           <styled.Menu>
-            <styled.MenuItem onClick={() => handleView("Courses")}>
+            <styled.MenuItem onClick={() => handleView("My Courses")}>
               <Icons.Book size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; Courses
             </styled.MenuItem>
@@ -68,7 +70,7 @@ export default function DashBoard() {
               <Icons.Message size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; Messages
             </styled.BrowseMenuItem> */}
-            <styled.BrowseMenuItem>
+            <styled.BrowseMenuItem onClick={() => handleView("All Courses")}>
               <Icons.AllCourses size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; All Courses
             </styled.BrowseMenuItem>
