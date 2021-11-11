@@ -10,6 +10,7 @@ import Assignments from "./courses/assignments/assignments";
 import Quizzes from "./courses/quizzes/tests";
 import Certificates from "./certificates/certificates";
 import AccMgmt from "./account/accMgmt";
+import Subscribe from "./account/subscribe";
 
 export default function DashBoard() {
   const app = useApp();
@@ -30,6 +31,8 @@ export default function DashBoard() {
         return <Certificates />;
       case "AccMgmt":
         return <AccMgmt />;
+      case "Subscribe":
+        return <Subscribe />;
       default:
         return <Courses />;
     }
@@ -66,10 +69,10 @@ export default function DashBoard() {
             </styled.MenuItem>
           </styled.Menu>
           <styled.BrowseMenu>
-            {/* <styled.BrowseMenuItem>
-              <Icons.Message size="18" title="View Courses" color="white" />
-              &nbsp;&nbsp;&nbsp; Messages
-            </styled.BrowseMenuItem> */}
+            <styled.BrowseMenuItem onClick={() => handleView("Subscribe")}>
+              <Icons.Subscribe size="18" title="Subscribe" color="white" />
+              &nbsp;&nbsp;&nbsp; Subscribe
+            </styled.BrowseMenuItem>
             <styled.BrowseMenuItem onClick={() => handleView("All Courses")}>
               <Icons.AllCourses size="18" title="View Courses" color="white" />
               &nbsp;&nbsp;&nbsp; All Courses
