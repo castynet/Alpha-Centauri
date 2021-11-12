@@ -12,7 +12,7 @@ export default function AccountManagement() {
   const [parentName, setParentName] = useState(app.user.parentName);
   const [parentEmail, setParentEmail] = useState(app.user.parentEmail);
   const [parentPhone, setParentPhone] = useState(app.user.parentPhone);
-  const [mpesaPhone, setMpesaPhone] = useState("true");
+  const [mpesaPhone, setMpesaPhone] = useState(parentPhone);
   const [dob, setDob] = useState(app.user.dob);
 
   const handleSubmit = () => {
@@ -127,7 +127,7 @@ export default function AccountManagement() {
           value={
             mpesaPhone === "true" || mpesaPhone === parentPhone
               ? "false"
-              : "true"
+              : parentPhone
           }
           checked={mpesaPhone === "true" || mpesaPhone === parentPhone}
           onChange={(e) => setMpesaPhone(e.target.value)}
