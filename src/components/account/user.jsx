@@ -1,11 +1,16 @@
 import { useState } from "react";
 import * as styled from "./user.styles.js";
 import { useApp } from "../context.jsx";
+import { Link } from "react-router-dom";
 
 export default function DashBoard() {
   const app = useApp();
   const [openUser, setOpenUser] = useState(false);
   const [darkTheme, setDarkTheme] = useState(false);
+  const style = {
+    textDecoration: "none",
+    color: "inherit",
+  };
 
   const expandUser = () => {
     openUser ? setOpenUser(false) : setOpenUser(true);
@@ -37,9 +42,11 @@ export default function DashBoard() {
                 Signed in as <u>{app.user.displayName}</u>
               </styled.ProfileInfo>
               <styled.ActionWrap>
-                <styled.UserAction onClick={() => app.setView("AccMgmt")}>
-                  Edit Profile
-                </styled.UserAction>
+                <Link style={style} to={"/"}>
+                  <styled.UserAction onClick={() => app.setView("AccMgmt")}>
+                    Edit Profile
+                  </styled.UserAction>
+                </Link>
                 <styled.UserAction>Payments</styled.UserAction>
               </styled.ActionWrap>
               <styled.Logout>Logout</styled.Logout>
