@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig } from "./firebase";
 import { getFunctions, httpsCallable } from "firebase/functions";
+import { Slugify } from "./general/utilities";
 import {
   doc,
   getDoc,
@@ -38,10 +39,12 @@ export const ContextProvider = ({ children }) => {
   const [theme, setTheme] = useState("light");
   const [userRef, setUserRef] = useState(null);
   const [rawUser, setRawUser] = useState(null);
-  const [courses, setCourses] = useState(null);
+  const [courses, setCourses] = useState([]);
 
   // fetch courses before anything else
   useEffect(() => {
+    const usr = JSON.parse(localStorage.getItem("user"));
+    setUser(usr);
     fetchCourses();
   }, []);
 
@@ -50,7 +53,9 @@ export const ContextProvider = ({ children }) => {
     const coursesSnapshot = await getDocs(collection(db, "courses"));
     const courses = [];
     coursesSnapshot.forEach((doc) => {
-      courses.push(doc.data());
+      var cs = Object.assign({}, doc.data());
+      cs.slug = Slugify(cs.title);
+      courses.push(cs);
     });
     setCourses(courses);
   };
@@ -67,7 +72,9 @@ export const ContextProvider = ({ children }) => {
       };
       AddUserToDb(content, doc(db, "users", paramUser.uid));
     } else {
-      setUser(docSnap.data());
+      const usr = docSnap.data();
+      localStorage.setItem("user", JSON.stringify(usr));
+      setUser(usr);
     }
   }
 
@@ -120,6 +127,7 @@ export const ContextProvider = ({ children }) => {
         courses,
         signOut,
         subscribe,
+        fetchCourses,
       }}
     >
       {children}
