@@ -24,7 +24,7 @@ export default function DashBoard() {
       <styled.Wrapper openUser={openUser}>
         {!openUser ? (
           <styled.ProfileIcon onClick={() => expandUser()}>
-            <styled.UserIcon title="View Courses" />
+            <styled.UserIcon title="View User" />
           </styled.ProfileIcon>
         ) : (
           <>
