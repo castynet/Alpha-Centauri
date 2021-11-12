@@ -11,6 +11,7 @@ import { TimesCircle } from "@styled-icons/fa-regular/TimesCircle";
 import { Award } from "@styled-icons/fa-solid";
 import { SignInAlt } from "@styled-icons/fa-solid/SignInAlt";
 import { MoneyCheck } from "@styled-icons/fa-solid";
+import { Spinner } from "@styled-icons/fa-solid";
 
 export const Icons = {
   Book: Book,
@@ -27,4 +28,5 @@ export const Icons = {
   Register: PencilAlt,
   Login: SignInAlt,
   Subscribe: MoneyCheck,
+  Loader: Spinner,
 };
