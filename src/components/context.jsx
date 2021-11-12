@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig } from "./firebase";
+import { getFunctions, httpsCallable } from "firebase/functions";
 import {
   doc,
   getDoc,
@@ -21,6 +22,9 @@ const provider = new GoogleAuthProvider();
 const auth = getAuth(firebaseApp);
 const db = getFirestore();
 
+const functions = getFunctions(firebaseApp, "europe-west3");
+const initPayment = httpsCallable(functions, "initPayment");
+
 // The app access point
 export function useApp() {
   return useContext(Context);
@@ -36,6 +40,7 @@ export const ContextProvider = ({ children }) => {
   const [rawUser, setRawUser] = useState(null);
   const [courses, setCourses] = useState(null);
 
+  // fetch courses before anything else
   useEffect(() => {
     fetchCourses();
   }, []);
@@ -50,30 +55,51 @@ export const ContextProvider = ({ children }) => {
     setCourses(courses);
   };
 
+  // get the user data, if user is none existent, create one
+  async function fetchUser(paramUser) {
+    const docSnap = await getDoc(doc(db, "users", paramUser.uid));
+    if (!docSnap.exists()) {
+      setView("AccMgmt");
+      var content = {
+        displayName: paramUser.displayName,
+        phoneNumber: paramUser.phoneNumber,
+        avatar: paramUser.photoURL,
+      };
+      AddUserToDb(content, doc(db, "users", paramUser.uid));
+    } else {
+      setUser(docSnap.data());
+    }
+  }
+
   // send user info to db
   function AddUserToDb(content, userRef) {
     setDoc(userRef, content, { merge: true });
+    fetchUser(rawUser);
   }
 
   // sign the user in then send them to complete acc page or courses
   async function signIn() {
     const result = await signInWithPopup(auth, provider);
-    const credential = await GoogleAuthProvider.credentialFromResult(result);
-    setToken(credential.accessToken);
+    setToken(result.user.uid);
     setUserRef(doc(db, "users", result.user.uid));
     setRawUser(result.user);
-    const docSnap = await getDoc(doc(db, "users", result.user.uid));
-    if (!docSnap.exists()) {
-      setView("AccMgmt");
-      var content = {
-        displayName: result.user.displayName,
-        phoneNumber: result.user.phoneNumber,
-        avatar: result.user.photoURL,
-      };
-      AddUserToDb(content, doc(db, "users", result.user.uid));
-    } else {
-      setUser(docSnap.data());
-    }
+    fetchUser(result.user);
+  }
+
+  async function signOut() {}
+
+  // initiate payment from mpesa
+  async function subscribe(plan, phone) {
+    var data = {
+      email: user.email,
+      uid: token,
+      phone: phone,
+      plan: plan,
+    };
+    console.log(data);
+    initPayment(data).then((result) => {
+      console.log(result);
+    });
   }
 
   return (
@@ -92,6 +118,8 @@ export const ContextProvider = ({ children }) => {
         userRef,
         rawUser,
         courses,
+        signOut,
+        subscribe,
       }}
     >
       {children}
