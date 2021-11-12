@@ -1,5 +1,7 @@
 import * as styled from "./courses.styles";
 import { useApp } from "../context";
+import Loading from "../general/loading";
+import { Link } from "react-router-dom";
 
 export default function Courses() {
   const app = useApp();
@@ -23,26 +25,39 @@ export default function Courses() {
             {app.view === "All Courses" ? "My Courses" : "All Courses"}
           </styled.AltB>
         </styled.Title>
-        <styled.CourseWrapper>
-          {app.courses.map((course) => (
-            <styled.Course key={course.title}>
-              <styled.ImageCrop>
-                <styled.CourseImage
-                  src={course.displayImg}
-                  alt={`Course Image - ${course.title}`}
-                />
-              </styled.ImageCrop>
+        {app.courses ? (
+          <styled.CourseWrapper>
+            {app.courses.map((course) => (
+              <Link
+                style={{
+                  display: "block",
+                  textDecoration: "none",
+                  color: "inherit",
+                }}
+                to={`/courses/${course.slug}`}
+              >
+                <styled.Course key={course.title}>
+                  <styled.ImageCrop>
+                    <styled.CourseImage
+                      src={course.displayImg}
+                      alt={`Course Image - ${course.title}`}
+                    />
+                  </styled.ImageCrop>
 
-              <styled.CourseTitle>{course.title}</styled.CourseTitle>
-              <styled.CourseInfo>
-                <styled.CourseLang>{course.lang}</styled.CourseLang>
-                <styled.Cost>
-                  Cost: KES {addCommaToNumber(course.cost)}
-                </styled.Cost>
-              </styled.CourseInfo>
-            </styled.Course>
-          ))}
-        </styled.CourseWrapper>
+                  <styled.CourseTitle>{course.title}</styled.CourseTitle>
+                  <styled.CourseInfo>
+                    <styled.CourseLang>{course.lang}</styled.CourseLang>
+                    <styled.Cost>
+                      Cost: KES {addCommaToNumber(course.cost)}
+                    </styled.Cost>
+                  </styled.CourseInfo>
+                </styled.Course>
+              </Link>
+            ))}
+          </styled.CourseWrapper>
+        ) : (
+          <Loading />
+        )}
       </styled.Wrapper>
     </>
   );
