@@ -2,13 +2,10 @@ import * as styled from "./courses.styles";
 import { useApp } from "../context";
 import Loading from "../general/loading";
 import { Link } from "react-router-dom";
+import { addCommaToNumber } from "../general/utilities";
 
 export default function Courses() {
   const app = useApp();
-
-  const addCommaToNumber = (number) => {
-    return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-  };
 
   const handleClick = () => {
     app.view === "My Courses"
