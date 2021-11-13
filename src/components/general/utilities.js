@@ -36,3 +36,7 @@ export function Slugify(text) {
     .replace(/[^\w-]+/g, "") // Remove all non-word chars
     .replace(/--+/g, "-"); // Replace multiple - with single -
 }
+
+export const addCommaToNumber = (number) => {
+  return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+};
