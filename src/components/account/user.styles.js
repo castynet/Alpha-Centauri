@@ -8,12 +8,12 @@ export const Wrapper = styled.div`
   height: ${(props) => (props.openUser ? "300px" : "60px")};
   width: ${(props) => (props.openUser ? "350px" : "60px")};
   border-radius: ${(props) => (props.openUser ? "var(--borderRadius)" : "50%")};
-  border: 2px solid lightblue;
+  border: 2px solid #fff;
   transition: var(--smoothTransition);
   box-shadow: ${(props) =>
     props.openUser ? "var(--levelTwoDropShadow)" : "var(--levelOneDropShadow)"};
   padding: ${(props) => (props.openUser ? "10px" : "none")};
-  background-color: ${(props) => (props.openUser ? "white" : "none")};
+  background-color: ${(props) => (props.openUser ? "white" : "lightskyblue")};
 `;
 
 export const ProfileIcon = styled.div`
@@ -90,6 +90,7 @@ export const UserIcon = styled(Icons.User)`
   max-width: 70%;
   max-height: 70%;
   margin: 0 auto;
+  color: brown;
 `;
 
 export const UserInnerImg = styled.div`
