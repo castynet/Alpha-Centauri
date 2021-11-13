@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useApp } from "../context";
 import Loading from "../general/loading";
 import * as styled from "./singleCourse.styles";
+import { addCommaToNumber } from "../general/utilities";
+import { Link } from "react-router-dom";
 
 export default function SingleCourse() {
   const app = useApp();
@@ -17,6 +19,11 @@ export default function SingleCourse() {
     setCourse(selectedCourse);
   }, [selectedCourse]);
 
+  const style = {
+    textDecoration: "none",
+    color: "inherit",
+  };
+
   // if course can be found in user courses then show that course
   // otherwise show the get course btn
   // otherwise show subscribe btn
@@ -27,24 +34,65 @@ export default function SingleCourse() {
       {course ? (
         <>
           <styled.Wrapper>
-            Course Title
-            <p>a - Purchased course || b - Non-Purchased Course</p>
-            <p>Course name</p>
-            <p>Tutor</p>
-            <p>Progress</p>
-            <p>Cost</p>
-            <p>community posts about the course</p>
-            course.description
-            <p> -aa- add review</p>
-            <p> -aa- continue learning</p>
-            <p> -aa- progress</p>
-            <p> -aa- material</p>
-            <p> -aa- assignments</p>
-            <p> -aa- tests</p>
-            <p> -bb- purchase course</p>
-            <p> -bb- cost</p>
-            <p> -bb- related courses</p>
-            <p>reviews </p>
+            <styled.CourseTitle>{course.title}</styled.CourseTitle>
+            <styled.InfoSection>
+              <styled.ImageWrapper>
+                <styled.Image src={course.displayImg} />
+              </styled.ImageWrapper>
+              <styled.Info>
+                <p>
+                  <styled.Tag>Language</styled.Tag>
+                  :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  {course.lang}
+                </p>
+                <p>
+                  <styled.Tag>Cost</styled.Tag>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  KSh {addCommaToNumber(course.cost)}
+                </p>
+                <p>
+                  <styled.Tag>Registered Students</styled.Tag>
+                  :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  {course.registeredStd}
+                </p>
+                <p>
+                  <styled.Tag>Est Duration</styled.Tag>
+                  :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 30 Hours
+                </p>
+                <p>
+                  <styled.Tag>Tutor</styled.Tag>
+                  :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; John Doe
+                </p>
+                <Link
+                  style={style}
+                  to={"/"}
+                  onClick={() => app.setView("Subscribe")}
+                >
+                  <styled.Subscribe>Purchase Course</styled.Subscribe>
+                </Link>
+                <p>
+                  <styled.Note>**</styled.Note> all courses are free with a
+                  monthly subscription
+                </p>
+              </styled.Info>
+            </styled.InfoSection>
+            <styled.DescriptionTitle>Description</styled.DescriptionTitle>
+            <styled.Description>
+              The class is ideal for a student has some or no programming
+              skills. Object oriented programming can seem like daunting to
+              absolute beginners but this class provides an easy way these
+              concepts using learn Python Programming Language. Learn the best
+              practices and begin text based coding immediately on the following
+              learning areas: Explore Python data types and how to work with
+              variables &middot; Perform calculations with number variables,
+              manipulating strings and getting input from a user &middot; Using
+              a list, dictionary and tuples &middot; Working with Boolean
+              values, comparison operators &amp; operators &middot; Using loops
+              to repeats programming statements and blocks of code automatically
+              &middot; Reusing code using functions &middot; Drawing with
+              turtles &middot; Putting it all together: using variables, loops,
+              user defined functions, functions with parameters and conditional
+              statements to draw with turtles
+            </styled.Description>
           </styled.Wrapper>
         </>
       ) : (
