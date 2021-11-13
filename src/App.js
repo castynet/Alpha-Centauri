@@ -7,7 +7,7 @@ function App() {
   const app = useApp();
 
   const Display = () => {
-    if (app.user) {
+    if (app.rawUser) {
       return (
         <>
           <User />
