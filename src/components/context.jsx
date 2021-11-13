@@ -1,9 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig } from "./firebase";
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { Slugify } from "./general/utilities";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  setPersistence,
+  browserSessionPersistence,
+  onAuthStateChanged,
+} from "firebase/auth";
 import {
   doc,
   getDoc,
@@ -43,8 +50,19 @@ export const ContextProvider = ({ children }) => {
 
   // fetch courses before anything else
   useEffect(() => {
-    const usr = JSON.parse(localStorage.getItem("user"));
-    setUser(usr);
+    const getUser = async (uid) => {
+      const docSnap = await getDoc(doc(db, "users", uid));
+      const usr = docSnap.data();
+      setUser(usr);
+    };
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setToken(user.uid);
+        setUserRef(doc(db, "users", user.uid));
+        setRawUser(user);
+        getUser(user.uid);
+      }
+    });
     fetchCourses();
   }, []);
 
@@ -73,7 +91,6 @@ export const ContextProvider = ({ children }) => {
       AddUserToDb(content, doc(db, "users", paramUser.uid));
     } else {
       const usr = docSnap.data();
-      localStorage.setItem("user", JSON.stringify(usr));
       setUser(usr);
     }
   }
@@ -86,10 +103,12 @@ export const ContextProvider = ({ children }) => {
 
   // sign the user in then send them to complete acc page or courses
   async function signIn() {
+    setPersistence(auth, browserSessionPersistence);
     const result = await signInWithPopup(auth, provider);
+    console.log(result.user);
     setToken(result.user.uid);
     setUserRef(doc(db, "users", result.user.uid));
-    setRawUser(result.user);
+    setRawUser(result.user.user);
     fetchUser(result.user);
   }
 
