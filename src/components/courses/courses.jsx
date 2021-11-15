@@ -32,8 +32,9 @@ export default function Courses() {
                   color: "inherit",
                 }}
                 to={`/courses/${course.slug}`}
+                key={course.slug}
               >
-                <styled.Course key={course.title}>
+                <styled.Course>
                   <styled.ImageCrop>
                     <styled.CourseImage
                       src={course.displayImg}
