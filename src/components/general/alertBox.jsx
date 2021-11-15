@@ -1,43 +1,28 @@
 import * as styled from "./alertBox.styles";
+import { useApp } from "../context";
 
-export default function AlertBox(props) {
-  const type = props.type;
-
-  const GeneralAlert = () => {
-    return <p>{type}</p>;
-  };
-
-  const DeleteAcc = () => {
-    return <p>Deleting account</p>;
-  };
-
-  const ProcessingPayment = () => {
-    return <p>Processing payment</p>;
-  };
-
-  const PaymentProcessed = () => {
-    return <p>Payment processed</p>;
-  };
-
-  const PaymentFailed = () => {
-    return <p>Payment failed</p>;
-  };
+export default function AlertBox() {
+  const app = useApp();
 
   return (
     <>
-      <styled.Wrapper>
-        {type === "DeleteAcc" ? (
-          <DeleteAcc />
-        ) : type === "PaymentProcessed" ? (
-          <PaymentProcessed />
-        ) : type === "PaymentFailed" ? (
-          <PaymentFailed />
-        ) : type === "ProcessingPayment" ? (
-          <ProcessingPayment />
-        ) : (
-          <GeneralAlert />
-        )}
-      </styled.Wrapper>
+      <styled.Overlay>
+        <styled.Wrapper>
+          <styled.TitleBar>
+            <styled.CloseButton onClick={() => app.setPopup({ show: false })}>
+              x
+            </styled.CloseButton>
+            <styled.Title>{app.popup.title}</styled.Title>
+          </styled.TitleBar>
+          <styled.Content>{app.popup.message}</styled.Content>
+          <styled.LineAnimation>
+            <div className="bar"></div>
+          </styled.LineAnimation>
+          <styled.Okay onClick={() => app.setPopup({ show: false })}>
+            OK
+          </styled.Okay>
+        </styled.Wrapper>
+      </styled.Overlay>
     </>
   );
 }
