@@ -40,3 +40,10 @@ export function Slugify(text) {
 export const addCommaToNumber = (number) => {
   return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 };
+
+export const unhandledError = {
+  type: "error",
+  message: "An error occurred, please try again",
+  title: "Error",
+  open: true,
+};
