@@ -18,8 +18,13 @@ export default function Subscribe() {
   const handleSubscribe = () => {
     if (plan && phone) {
       const cleanNumber = mpesaNumberCheck(phone);
-      console.log(cleanNumber);
       app.subscribe(plan, cleanNumber);
+      app.setPopup({
+        type: "info",
+        message: "Trying to reach Mpesa...",
+        title: "Payment initiated",
+        open: true,
+      });
     }
   };
 
