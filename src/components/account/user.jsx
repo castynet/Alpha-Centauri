@@ -49,7 +49,7 @@ export default function DashBoard() {
                 </Link>
                 <styled.UserAction>Payments</styled.UserAction>
               </styled.ActionWrap>
-              <styled.Logout>Logout</styled.Logout>
+              <styled.Logout onClick={() => app.logOut()}>Logout</styled.Logout>
               <styled.ThemeSwitch>
                 <styled.SwitchInput
                   id="switch"
