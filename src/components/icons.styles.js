@@ -12,6 +12,8 @@ import { Award } from "@styled-icons/fa-solid";
 import { SignInAlt } from "@styled-icons/fa-solid/SignInAlt";
 import { MoneyCheck } from "@styled-icons/fa-solid";
 import { Spinner } from "@styled-icons/fa-solid";
+import { CheckCircle } from "@styled-icons/fa-solid";
+import { CreditCard } from "@styled-icons/fa-regular";
 
 export const Icons = {
   Book: Book,
@@ -29,4 +31,6 @@ export const Icons = {
   Login: SignInAlt,
   Subscribe: MoneyCheck,
   Loader: Spinner,
+  Check: CheckCircle,
+  Payments: CreditCard,
 };
