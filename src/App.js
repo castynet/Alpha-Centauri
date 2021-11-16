@@ -2,7 +2,6 @@ import DashBoard from "./components/dashboard";
 import User from "./components/account/user";
 import { useApp } from "./components/context";
 import Auth from "./components/auth/auth";
-import AlertBox from "./components/general/alertBox";
 
 function App() {
   const app = useApp();
@@ -22,7 +21,6 @@ function App() {
 
   return (
     <>
-      {app.popup.open ? <AlertBox /> : ""}
       <Display />
     </>
   );
