@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Icons } from "../icons.styles";
 
 export const Wrapper = styled.div`
   margin: 30px;
@@ -41,11 +42,17 @@ export const Plan = styled.div`
   border-radius: var(--borderRadius);
   box-shadow: var(--levelOneDropShadow);
   transition: var(--smoothTransition);
-  background-color: lightgreen;
+  background-color: ${(props) =>
+    props.selected ? "limegreen" : props.selected === false ? "grey" : "cyan"};
   padding: 20px;
 
   &:first-of-type {
-    background-color: lightskyblue;
+    background-color: ${(props) =>
+      props.selected
+        ? "limegreen"
+        : props.selected === false
+        ? "grey"
+        : "lightskyblue"};
   }
 `;
 
@@ -78,10 +85,8 @@ export const SubscribeButton = styled.button`
   box-shadow: var(--levelOneDropShadow);
   width: 100%;
   transition: var(--smoothTransition);
-
-  &:hover {
-    box-shadow: var(--levelTwoDropShadow);
-  }
+  background-color: ${(props) =>
+    props.selected ? "limegreen" : props.selected === false ? "#ccc" : "#fff"};
 `;
 
 export const InputWrapper = styled.div`
@@ -126,3 +131,22 @@ export const SubmitButton = styled.button`
     box-shadow: var(--levelTwoDropShadow);
   }
 `;
+
+export const Check = styled(Icons.Check)`
+  width: 21px;
+  color: #fff;
+  float: right;
+  border-radius: 50%;
+  border: 3px solid green;
+`;
+
+export const Close = styled(Icons.Close)`
+  width: 21px;
+  background-color: #ff5c5c;
+  color: #fff;
+  float: right;
+  border: 2px solid #ff5c5c;
+  border-radius: 50%;
+`;
+
+
