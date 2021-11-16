@@ -25,6 +25,33 @@ export const Assignment = styled.div`
   border-radius: var(--borderRadius);
   transition: var(--smoothTransition);
   padding: 10px;
+  height: 150px;
+
+  p {
+    margin: 5px 0;
+    font-weight: 600;
+
+    span {
+      display: inline-block;
+      font-weight: normal;
+      width: 200px;
+      text-decoration: underline;
+    }
+  }
+
+  div {
+    float: right;
+    height: 150px;
+    background-color: lightgreen;
+    margin-top: -10px;
+    margin-right: -10px;
+    border-top-right-radius: var(--borderRadius);
+    border-bottom-right-radius: var(--borderRadius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
 
   :hover {
     box-shadow: var(--levelTwoDropShadow);

@@ -15,15 +15,41 @@ export const TestWrapper = styled.div`
 
 export const Test = styled.div`
   background-color: white;
-  width: 250px;
+  width: 340px;
   height: fit-content;
   box-shadow: var(--levelOneDropShadow);
   border-radius: var(--borderRadius);
   transition: var(--smoothTransition);
-  padding: 10px;
+  padding: 20px;
 
   :hover {
     box-shadow: var(--levelTwoDropShadow);
+  }
+
+  p {
+    margin: 5px 0;
+    font-weight: 600;
+
+    span {
+      display: inline-block;
+      font-weight: normal;
+      width: 130px;
+      text-decoration: underline;
+    }
+  }
+
+  div {
+    width: 340px;
+    background-color: lightgreen;
+    margin-top: 10px;
+    margin-bottom: -20px;
+    margin-left: -20px;
+    border-bottom-left-radius: var(--borderRadius);
+    border-bottom-right-radius: var(--borderRadius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
   }
 `;
 
