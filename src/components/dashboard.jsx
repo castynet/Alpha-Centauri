@@ -6,7 +6,7 @@ import { Icons } from "./icons.styles";
 import { useApp } from "./context";
 
 import Search from "./general/search";
-import Community from "./community/community";
+import Payments from "./payments/payments";
 import Courses from "./courses/courses";
 import Assignments from "./courses/assignments/assignments";
 import Quizzes from "./courses/quizzes/tests";
@@ -14,6 +14,7 @@ import Certificates from "./certificates/certificates";
 import AccMgmt from "./account/accMgmt";
 import Subscribe from "./account/subscribe";
 import SingleCourse from "./courses/singleCourse";
+import AlertBox from "./general/alertBox";
 
 export default function DashBoard() {
   const app = useApp();
@@ -24,8 +25,8 @@ export default function DashBoard() {
 
   const View = () => {
     switch (app.view) {
-      case "Community":
-        return <Community />;
+      case "Payments":
+        return <Payments />;
       case "My Courses":
         return <Courses />;
       case "All Courses":
@@ -51,6 +52,7 @@ export default function DashBoard() {
 
   return (
     <>
+      {app.popup.open ? <AlertBox /> : ""}
       <styled.Wrapper>
         <styled.Sidebar>
           <styled.Menu>
@@ -73,12 +75,6 @@ export default function DashBoard() {
               </styled.MenuItem>
             </Link>
             <Link style={style} to={"/"}>
-              <styled.MenuItem onClick={() => handleView("Community")}>
-                <Icons.Community size="18" title="Community" color="white" />
-                &nbsp;&nbsp;&nbsp; Community
-              </styled.MenuItem>
-            </Link>
-            <Link style={style} to={"/"}>
               <styled.MenuItem onClick={() => handleView("Certificates")}>
                 <Icons.Certificate
                   size="18"
@@ -86,6 +82,12 @@ export default function DashBoard() {
                   color="white"
                 />
                 &nbsp;&nbsp;&nbsp; Certificates
+              </styled.MenuItem>
+            </Link>
+            <Link style={style} to={"/"}>
+              <styled.MenuItem onClick={() => handleView("Payments")}>
+                <Icons.Payments size="18" title="Payments" color="white" />
+                &nbsp;&nbsp;&nbsp; Payments
               </styled.MenuItem>
             </Link>
           </styled.Menu>
