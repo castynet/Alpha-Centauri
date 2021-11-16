@@ -8,7 +8,7 @@ export default function AlertBox() {
     <>
       <styled.Overlay>
         <styled.Wrapper>
-          <styled.TitleBar>
+          <styled.TitleBar type={app.popup.type}>
             <styled.CloseButton onClick={() => app.setPopup({ show: false })}>
               x
             </styled.CloseButton>
