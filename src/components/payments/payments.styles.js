@@ -31,13 +31,24 @@ export const Payment = styled.div`
   transition: var(--smoothTransition);
   padding: 20px 20px 20px 30px;
   margin: 15px 0;
-  width: 300px;
+  width: 350px;
   height: 190px;
+
+  p {
+    font-weight: 600;
+
+    span {
+      font-weight: normal;
+      width: 80px;
+      display: inline-block;
+    }
+  }
 `;
 
 export const PaymentTitle = styled.h4`
   margin-bottom: 10px;
   text-align: center;
+  text-decoration: underline;
 `;
 
 export const Indicator = styled.div`
