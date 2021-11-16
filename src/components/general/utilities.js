@@ -41,9 +41,18 @@ export const addCommaToNumber = (number) => {
   return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 };
 
-export const unhandledError = {
+export const error = {
   type: "error",
   message: "An error occurred, please try again",
   title: "Error",
   open: true,
+};
+
+export const getTime = (date) => {
+  var timestamp = new Date(
+    date
+      .toString()
+      .replace(/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/, "$4:$5:$6 $2/$3/$1")
+  );
+  return timestamp.toLocaleString("en-ZA", { timeZone: "Africa/Nairobi" });
 };
