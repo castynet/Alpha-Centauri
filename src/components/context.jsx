@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./firebase";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import { Slugify } from "./general/utilities";
+import { Slugify, error } from "./general/utilities";
 import {
   getAuth,
   signInWithPopup,
@@ -10,6 +10,7 @@ import {
   setPersistence,
   browserSessionPersistence,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import {
   doc,
@@ -47,6 +48,12 @@ export const ContextProvider = ({ children }) => {
   const [userRef, setUserRef] = useState(null);
   const [rawUser, setRawUser] = useState(null);
   const [courses, setCourses] = useState([]);
+  const [myCourses, setMyCourses] = useState([]);
+  const [assignment, setAssignment] = useState([]);
+  const [tests, setTests] = useState([]);
+  const [payments, setPayments] = useState([]);
+  const [popup, setPopup] = useState({});
+  const [plan, setPlan] = useState(null);
 
   // fetch courses before anything else
   useEffect(() => {
@@ -98,6 +105,7 @@ export const ContextProvider = ({ children }) => {
   // send user info to db
   function AddUserToDb(content, userRef) {
     setDoc(userRef, content, { merge: true });
+    // raw user comes from state, so we can use it to fetch user data
     fetchUser(rawUser);
   }
 
@@ -105,14 +113,17 @@ export const ContextProvider = ({ children }) => {
   async function signIn() {
     setPersistence(auth, browserSessionPersistence);
     const result = await signInWithPopup(auth, provider);
-    console.log(result.user);
     setToken(result.user.uid);
     setUserRef(doc(db, "users", result.user.uid));
-    setRawUser(result.user.user);
+    setRawUser(result.user);
     fetchUser(result.user);
   }
 
-  async function signOut() {}
+  // logout and reload to lose state
+  async function logOut() {
+    signOut(auth);
+    window.location.reload();
+  }
 
   // initiate payment from mpesa
   async function subscribe(plan, phone) {
@@ -122,10 +133,44 @@ export const ContextProvider = ({ children }) => {
       phone: phone,
       plan: plan,
     };
-    console.log(data);
     initPayment(data).then((result) => {
-      console.log(result);
+      // if result is positive say we are processing payment
+      if (result.data.status === "success") {
+        setPopup({
+          type: "info",
+          message:
+            "You can close this window, we'll automatically update your account once we have processed the payment.",
+          open: true,
+          title: "Processing Payment, Check your Phone",
+        });
+        setTimeout(getPayments, 20000);
+      } else {
+        setPopup({ ...error, ...{ title: "Error with Payment" } });
+      }
     });
+  }
+
+  // get assignments
+  async function getAssignments() {}
+
+  // get tests
+  async function getTests() {}
+
+  // get payments
+  async function getPayments() {
+    const paymentsSnapshot = await getDocs(
+      collection(db, `users/${token}/payments`)
+    );
+    const payments = [];
+    paymentsSnapshot.forEach((doc) => {
+      if (plan === null) {
+        setPlan(doc.data().plan);
+      } else if (plan.timestamp < doc.data().timestamp) {
+        setPlan(doc.data().plan);
+      }
+      payments.push(doc.data());
+    });
+    setPayments(payments);
   }
 
   return (
@@ -144,9 +189,16 @@ export const ContextProvider = ({ children }) => {
         userRef,
         rawUser,
         courses,
-        signOut,
+        logOut,
         subscribe,
         fetchCourses,
+        getAssignments,
+        getTests,
+        getPayments,
+        popup,
+        setPopup,
+        plan,
+        payments,
       }}
     >
       {children}
