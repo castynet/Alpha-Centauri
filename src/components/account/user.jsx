@@ -47,7 +47,11 @@ export default function DashBoard() {
                     Edit Profile
                   </styled.UserAction>
                 </Link>
-                <styled.UserAction>Payments</styled.UserAction>
+                <Link style={style} to={"/"}>
+                  <styled.UserAction onClick={() => app.setView("Payments")}>
+                    Payments
+                  </styled.UserAction>
+                </Link>
               </styled.ActionWrap>
               <styled.Logout onClick={() => app.logOut()}>Logout</styled.Logout>
               <styled.ThemeSwitch>
