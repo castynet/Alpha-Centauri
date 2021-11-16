@@ -33,6 +33,7 @@ const db = getFirestore();
 
 const functions = getFunctions(firebaseApp, "europe-west3");
 const initPayment = httpsCallable(functions, "initPayment");
+const addCourse = httpsCallable(functions, "addCourse");
 
 // The app access point
 export function useApp() {
@@ -54,6 +55,7 @@ export const ContextProvider = ({ children }) => {
   const [payments, setPayments] = useState([]);
   const [popup, setPopup] = useState({});
   const [plan, setPlan] = useState(null);
+  const [topics, setTopics] = useState([]);
 
   // fetch courses before anything else
   useEffect(() => {
@@ -83,6 +85,21 @@ export const ContextProvider = ({ children }) => {
       courses.push(cs);
     });
     setCourses(courses);
+  };
+
+  // fetch my courses from firebase
+  const fetchMyCourses = async () => {
+    const coursesSnapshot = await getDocs(
+      collection(db, `users/${token}/courses`)
+    );
+    const courses = [];
+    coursesSnapshot.forEach((doc) => {
+      var cs = Object.assign({}, doc.data());
+      cs.slug = Slugify(cs.title);
+      courses.push(cs);
+    });
+    setMyCourses(courses);
+    return courses;
   };
 
   // get the user data, if user is none existent, create one
@@ -149,12 +166,112 @@ export const ContextProvider = ({ children }) => {
       }
     });
   }
+  // add course to user's catalogue
+  async function addCourseToUser(courseName) {
+    const payment = () => {
+      var timeOfPayment = 0;
+      var bestSoFar;
+      payments.forEach((payment) => {
+        const timestamp = parseInt(payment.timestamp);
+        if (payment.success && timestamp > timeOfPayment) {
+          timeOfPayment = timestamp;
+          bestSoFar = payment.MerchantRequestID;
+        }
+      });
+      return bestSoFar;
+    };
+    if (!payment()) {
+      // popup could not find a valid payment
+      setPopup({
+        type: "error",
+        message: "Could not find a valid payment, check your subscription",
+        open: true,
+        title: "Payment Error",
+      });
+      return;
+    } else {
+      setPopup({
+        type: "success",
+        message:
+          "Adding course to your catalogue, this will only take a few seconds",
+        open: true,
+        title: "Adding Course",
+      });
+    }
+    const data = {
+      email: user.email,
+      uid: token,
+      payment: payment(),
+      courseName: courseName,
+    };
+    addCourse(data).then((result) => {
+      if (result.data.status === "success") {
+        setPopup({
+          type: "success",
+          message: "Course Added to your Catalogue, check 'My Courses'",
+          open: true,
+          title: "Course Added",
+        });
+        fetchMyCourses();
+      } else {
+        setPopup({ ...error, ...{ title: "Error adding the Course" } });
+      }
+    });
+  }
 
   // get assignments
-  async function getAssignments() {}
+  async function getAssignments() {
+    const courses =
+      !myCourses.length === 0 ? myCourses : await fetchMyCourses();
+    for (const course of courses) {
+      const assignmentsSnapshot = await getDocs(
+        collection(db, `users/${token}/courses/${course.title}/assignments`)
+      );
+      const assignments = [];
+      assignmentsSnapshot.forEach((doc) => {
+        var cs = Object.assign({}, doc.data());
+        cs.slug = Slugify(cs.title);
+        assignments.push(cs);
+      });
+      setAssignment(assignments);
+    }
+  }
 
   // get tests
-  async function getTests() {}
+  async function getTests() {
+    const courses =
+      !myCourses.length === 0 ? myCourses : await fetchMyCourses();
+    for (const course of courses) {
+      const testsSnapshot = await getDocs(
+        collection(db, `users/${token}/courses/${course.title}/tests`)
+      );
+      const tests = [];
+      testsSnapshot.forEach((doc) => {
+        var cs = Object.assign({}, doc.data());
+        cs.slug = Slugify(cs.title);
+        tests.push(cs);
+      });
+      setTests(tests);
+    }
+  }
+
+  // get tests
+  async function getTopics() {
+    const courses =
+      !myCourses.length === 0 ? myCourses : await fetchMyCourses();
+    for (const course of courses) {
+      const testsSnapshot = await getDocs(
+        collection(db, `users/${token}/courses/${course.title}/topics`)
+      );
+      const topics = [];
+      testsSnapshot.forEach((doc) => {
+        var cs = Object.assign({}, doc.data());
+        cs.slug = Slugify(cs.title);
+        topics.push(cs);
+      });
+      setTopics(topics);
+    }
+  }
 
   // get payments
   async function getPayments() {
@@ -199,6 +316,13 @@ export const ContextProvider = ({ children }) => {
         setPopup,
         plan,
         payments,
+        addCourseToUser,
+        myCourses,
+        fetchMyCourses,
+        assignment,
+        tests,
+        topics,
+        getTopics,
       }}
     >
       {children}
