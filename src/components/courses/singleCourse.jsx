@@ -12,22 +12,33 @@ export default function SingleCourse() {
   const [course, setCourse] = useState(null);
 
   const selectedCourse = app.courses.find(
+    // if course can be found in user courses then show that course
     (course) => course.slug === params.slug
   );
 
   useEffect(() => {
     setCourse(selectedCourse);
-  }, [selectedCourse]);
+    if (app.payments.length === 0) {
+      app.getPayments();
+    }
+  }, [selectedCourse, app]);
 
   const style = {
     textDecoration: "none",
     color: "inherit",
   };
 
-  // if course can be found in user courses then show that course
-  // otherwise show the get course btn
-  // otherwise show subscribe btn
-  // otherwise show loading
+  const handleSubscribe = () => {
+    if (app.plan) {
+      app.addCourseToUser(course.title);
+    } else {
+      app.setView("Subscribe");
+    }
+  };
+
+  const location = () => {
+    return !app.plan ? "/" : "";
+  };
 
   return (
     <>
@@ -62,12 +73,12 @@ export default function SingleCourse() {
                   <styled.Tag>Tutor</styled.Tag>
                   :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; John Doe
                 </p>
-                <Link
-                  style={style}
-                  to={"/"}
-                  onClick={() => app.setView("Subscribe")}
-                >
-                  <styled.Subscribe>Purchase Course</styled.Subscribe>
+                <Link style={style} to={location()}>
+                  <styled.Subscribe onClick={() => handleSubscribe()}>
+                    {app.plan
+                      ? "Add Course to my Catalogue"
+                      : "Purchase Course"}
+                  </styled.Subscribe>
                 </Link>
                 <p>
                   <styled.Note>**</styled.Note> all courses are free with a
