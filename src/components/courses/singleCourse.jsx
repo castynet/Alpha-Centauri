@@ -21,6 +21,9 @@ export default function SingleCourse() {
     if (app.payments.length === 0) {
       app.getPayments();
     }
+    if (app.myCourses.length === 0) {
+      app.fetchMyCourses();
+    }
   }, [selectedCourse, app]);
 
   const style = {
@@ -29,7 +32,9 @@ export default function SingleCourse() {
   };
 
   const handleSubscribe = () => {
-    if (app.plan) {
+    if (courseOwned()) {
+      // go to course topics
+    } else if (app.plan) {
       app.addCourseToUser(course.title);
     } else {
       app.setView("Subscribe");
@@ -39,6 +44,16 @@ export default function SingleCourse() {
   const location = () => {
     return !app.plan ? "/" : "";
   };
+
+  function courseOwned() {
+    var i;
+    for (i = 0; i < app.myCourses.length; i++) {
+      if (app.myCourses[i].slug === params.slug) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   return (
     <>
@@ -75,7 +90,9 @@ export default function SingleCourse() {
                 </p>
                 <Link style={style} to={location()}>
                   <styled.Subscribe onClick={() => handleSubscribe()}>
-                    {app.plan
+                    {courseOwned()
+                      ? "Continue Learning"
+                      : app.plan
                       ? "Add Course to my Catalogue"
                       : "Purchase Course"}
                   </styled.Subscribe>
