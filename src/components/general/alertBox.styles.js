@@ -26,7 +26,12 @@ export const Overlay = styled.div`
 `;
 
 export const TitleBar = styled.div`
-  background-color: lightgreen;
+  background-color: ${(props) =>
+    props.type === "success"
+      ? "lightgreen"
+      : props.type === "error"
+      ? "lightpink"
+      : "burlywood"};
   border-bottom: 1px solid #444;
   padding: 4px 0;
   min-height: 38px;
