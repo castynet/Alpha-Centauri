@@ -44,7 +44,7 @@ export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [signedIn, setSignedIn] = useState(false);
-  const [view, setView] = useState("Courses");
+  const [view, setView] = useState("All Courses");
   const [theme, setTheme] = useState("light");
   const [userRef, setUserRef] = useState(null);
   const [rawUser, setRawUser] = useState(null);
