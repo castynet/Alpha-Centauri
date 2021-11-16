@@ -14,6 +14,8 @@ import { MoneyCheck } from "@styled-icons/fa-solid";
 import { Spinner } from "@styled-icons/fa-solid";
 import { CheckCircle } from "@styled-icons/fa-solid";
 import { CreditCard } from "@styled-icons/fa-regular";
+import { ChevronRight } from "@styled-icons/fa-solid";
+import { ChevronDown } from "@styled-icons/fa-solid";
 
 export const Icons = {
   Book: Book,
@@ -33,4 +35,6 @@ export const Icons = {
   Loader: Spinner,
   Check: CheckCircle,
   Payments: CreditCard,
+  ArrowRight: ChevronRight,
+  ArrowDown: ChevronDown,
 };
