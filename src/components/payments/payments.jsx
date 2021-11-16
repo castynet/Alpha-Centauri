@@ -37,28 +37,33 @@ export default function Payments() {
           ) : (
             <>
               {app.payments.map((payment) => (
-                <styled.Payment
-                  key={payment.timestamp}
-                  
-                >
-                  <styled.Indicator success={payment.success}></styled.Indicator>
+                <styled.Payment key={payment.timestamp}>
+                  <styled.Indicator
+                    success={payment.success}
+                  ></styled.Indicator>
                   <styled.PaymentTitle>
-                    Time:{" "}
+                    Time:&nbsp;{" "}
                     {payment.timestamp
                       ? getTime(payment.timestamp)
                       : "Not Available"}
                   </styled.PaymentTitle>
                   <p>
-                    Result:{" "}
+                    <span>Result</span>:&nbsp;{" "}
                     {payment.ResultCode === "1032"
                       ? "Payment Cancelled"
                       : payment.ResultCode === "0"
                       ? "Payment Successful"
                       : "Error with the Payment"}
                   </p>
-                  <p>Phone: {payment.PhoneNumber}</p>
-                  <p>Plan: {payment.plan}</p>
-                  <p>Amount: KSh 1</p>
+                  <p>
+                    <span>Phone</span>:&nbsp; {payment.PhoneNumber}
+                  </p>
+                  <p>
+                    <span>Plan</span>:&nbsp; {payment.plan}
+                  </p>
+                  <p>
+                    <span>Amount</span>:&nbsp; KSh 1
+                  </p>
                 </styled.Payment>
               ))}
             </>
